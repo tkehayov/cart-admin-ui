@@ -38,10 +38,6 @@ const routes: Routes = [
         loadChildren: './theme/ui-elements/advance/advance.module#AdvanceModule'
       },
       {
-        path: 'animations',
-        loadChildren: './theme/ui-elements/animation/animation.module#AnimationModule'
-      },
-      {
         path: 'forms',
         loadChildren: './theme/forms/forms.module#FormsModule'
       },

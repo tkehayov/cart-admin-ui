@@ -103,12 +103,6 @@ var MENUITEMS = [
                         ]
                     },
                 ]
-            },
-            {
-                state: 'animations',
-                name: 'Animations',
-                type: 'link',
-                icon: 'icon-reload rotate-refresh'
             }
         ]
     },
