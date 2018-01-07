@@ -153,59 +153,6 @@ const MENUITEMS = [
     ]
   },
   {
-    label: 'Tables',
-    main: [
-      {
-        state: 'bootstrap-table',
-        short_label: 'B',
-        name: 'Bootstrap Table',
-        type: 'sub',
-        icon: 'icon-receipt',
-        children: [
-          {
-            state: 'basic',
-            name: 'Basic Table'
-          },
-          {
-            state: 'sizing',
-            name: 'Sizing Table'
-          }, {
-            state: 'border',
-            name: 'Border Table'
-          }, {
-            state: 'styling',
-            name: 'Styling Table'
-          }
-        ]
-      },
-      {
-        state: 'data-table',
-        short_label: 'D',
-        name: 'Data Table',
-        type: 'sub',
-        icon: 'icon-widgetized',
-        children: [
-          {
-            state: 'basic',
-            name: 'Basic Table'
-          }, {
-            state: 'editable',
-            name: 'Editable'
-          }, {
-            state: 'row-details',
-            name: 'Row Details Table'
-          }, {
-            state: 'paging',
-            name: 'Paging Table'
-          }, {
-            state: 'selection',
-            name: 'Selection Table'
-          }
-        ]
-      }
-    ]
-  },
-  {
     label: 'Chart And Map',
     main: [
       {

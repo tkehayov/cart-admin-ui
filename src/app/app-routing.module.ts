@@ -34,14 +34,6 @@ const routes: Routes = [
         loadChildren: './theme/forms/forms.module#FormsModule'
       },
       {
-        path: 'bootstrap-table',
-        loadChildren: './theme/table/bootstrap-table/bootstrap-table.module#BootstrapTableModule'
-      },
-      {
-        path: 'data-table',
-        loadChildren: './theme/table/data-table/data-table.module#DataTableModule'
-      },
-      {
         path: 'maintenance/error',
         loadChildren: './theme/maintenance/error/error.module#ErrorModule'
       },
