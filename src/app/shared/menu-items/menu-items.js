@@ -82,37 +82,6 @@ var MENUITEMS = [
         ]
     },
     {
-        label: 'App',
-        main: [
-            {
-                state: 'crm-contact',
-                name: 'CRM Contact',
-                type: 'link',
-                icon: 'icon-layout-list-thumb'
-            }, {
-                state: 'task',
-                name: 'Task',
-                type: 'sub',
-                icon: 'icon-check-box',
-                children: [
-                    {
-                        state: 'list',
-                        name: 'Task List'
-                    }, {
-                        state: 'board',
-                        name: 'Task Board'
-                    }, {
-                        state: 'details',
-                        name: 'Task Details'
-                    }, {
-                        state: 'issue',
-                        name: 'Issue List'
-                    }
-                ]
-            }
-        ]
-    },
-    {
         label: 'Extension',
         main: [
             {

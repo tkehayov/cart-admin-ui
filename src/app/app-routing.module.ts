@@ -34,10 +34,6 @@ const routes: Routes = [
         loadChildren: './theme/forms/forms.module#FormsModule'
       },
       {
-        path: 'task',
-        loadChildren: './theme/task/task.module#TaskModule'
-      },
-      {
         path: 'invoice',
         loadChildren: './theme/extension/invoice/invoice.module#InvoiceModule'
       },

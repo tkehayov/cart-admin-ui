@@ -149,33 +149,6 @@ const MENUITEMS = [
     ]
   },
   {
-    label: 'App',
-    main: [
-      {
-        state: 'task',
-        short_label: 'T',
-        name: 'Task',
-        type: 'sub',
-        icon: 'icon-check-box',
-        children: [
-          {
-            state: 'list',
-            name: 'Task List'
-          }, {
-            state: 'board',
-            name: 'Task Board'
-          }, {
-            state: 'details',
-            name: 'Task Details'
-          }, {
-            state: 'issue',
-            name: 'Issue List'
-          }
-        ]
-      }
-    ]
-  },
-  {
     label: 'Extension',
     main: [
       {
