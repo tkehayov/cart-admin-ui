@@ -10,12 +10,8 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        redirectTo: 'dashboard/default',
+        redirectTo: 'products',
         pathMatch: 'full'
-      },
-      {
-        path: 'dashboard',
-        loadChildren: './theme/dashboard/dashboard.module#DashboardModule'
       },
       {
         path: 'navigation',

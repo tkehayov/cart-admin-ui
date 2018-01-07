@@ -41,33 +41,6 @@ const MENUITEMS = [
         icon: 'icon-layout-cta-right'
       },
       {
-        state: 'dashboard',
-        short_label: 'D',
-        name: 'Dashboard',
-        type: 'sub',
-        icon: 'icon-home',
-        children: [
-          {
-            state: 'default',
-            name: 'Default'
-          },
-          {
-            state: 'ecommerce',
-            name: 'Ecommerce'
-          },
-          {
-            state: 'analytics',
-            name: 'Analytics',
-            badge: [
-              {
-                type: 'info',
-                value: 'NEW'
-              }
-            ]
-          }
-        ]
-      },
-      {
         state: 'navigation',
         short_label: 'N',
         name: 'Navigation',
