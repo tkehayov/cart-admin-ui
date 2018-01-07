@@ -82,11 +82,6 @@ var MENUITEMS = [
         ]
     },
     {
-        label: 'Pages',
-        main: [
-        ]
-    },
-    {
         label: 'App',
         main: [
             {
