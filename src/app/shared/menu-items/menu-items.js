@@ -16,18 +16,6 @@ var MENUITEMS = [
                 name: 'Dashboard',
                 type: 'link',
                 icon: 'icon-home'
-            },
-            {
-                state: 'widget',
-                name: 'Widget',
-                type: 'link',
-                icon: 'icon-view-grid',
-                badge: [
-                    {
-                        type: 'danger',
-                        value: '100+'
-                    }
-                ]
             }
         ],
     },
@@ -66,12 +54,6 @@ var MENUITEMS = [
                         value: 'New'
                     }
                 ]
-            }, {
-                state: 'select',
-                main_state: 'forms',
-                name: 'Form Select',
-                type: 'link',
-                icon: 'icon-shortcode'
             }, {
                 state: 'masking',
                 main_state: 'forms',

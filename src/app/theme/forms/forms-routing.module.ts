@@ -24,10 +24,6 @@ const routes: Routes = [
       {
         path: 'picker',
         loadChildren: './form-picker/form-picker.module#FormPickerModule'
-      },
-      {
-        path: 'select',
-        loadChildren: './form-select/form-select.module#FormSelectModule'
       }
     ]
   }

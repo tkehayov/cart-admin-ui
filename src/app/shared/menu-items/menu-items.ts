@@ -73,29 +73,6 @@ const MENUITEMS = [
         name: 'Navigation',
         type: 'link',
         icon: 'icon-layout-cta-right'
-      },
-      {
-        state: 'widget',
-        short_label: 'W',
-        name: 'Widget',
-        type: 'sub',
-        icon: 'icon-view-grid',
-        badge: [
-          {
-            type: 'danger',
-            value: '100+'
-          }
-        ],
-        children: [
-          {
-            state: 'statistic',
-            name: 'Statistic'
-          },
-          {
-            state: 'data',
-            name: 'Data'
-          }
-        ]
       }
     ],
   },
@@ -137,14 +114,6 @@ const MENUITEMS = [
             value: 'New'
           }
         ]
-      },
-      {
-        state: 'select',
-        short_label: 'S',
-        main_state: 'forms',
-        name: 'Form Select',
-        type: 'link',
-        icon: 'icon-shortcode'
       }
     ]
   }

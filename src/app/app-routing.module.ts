@@ -26,10 +26,6 @@ const routes: Routes = [
         loadChildren: './theme/products/products.module#ProductsModule'
       },
       {
-        path: 'widget',
-        loadChildren: './theme/widget/widget.module#WidgetModule'
-      },
-      {
         path: 'forms',
         loadChildren: './theme/forms/forms.module#FormsModule'
       },
