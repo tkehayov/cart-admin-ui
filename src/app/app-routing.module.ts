@@ -14,24 +14,8 @@ const routes: Routes = [
         pathMatch: 'full'
       },
       {
-        path: 'navigation',
-        loadChildren: './theme/navigation/navigation.module#NavigationModule'
-      },
-      {
         path: 'products',
         loadChildren: './theme/products/products.module#ProductsModule'
-      },
-      {
-        path: 'forms',
-        loadChildren: './theme/forms/forms.module#FormsModule'
-      },
-      {
-        path: 'file-upload-ui',
-        loadChildren: './theme/extension/file-upload-ui/file-upload-ui.module#FileUploadUiModule'
-      },
-      {
-        path: 'simple-page',
-        loadChildren: './theme/simple-page/simple-page.module#SimplePageModule'
       }
     ]
   }

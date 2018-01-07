@@ -8,51 +8,6 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var MENUITEMS = [
-
-    {
-        label: 'Forms',
-        main: [
-            {
-                state: 'forms',
-                name: 'Form Components',
-                type: 'sub',
-                icon: 'icon-layers',
-                children: [
-                    {
-                        state: 'basic-elements',
-                        name: 'Form Components'
-                    }, {
-                        state: 'add-on',
-                        name: 'Form-Elements-Add-On'
-                    }, {
-                        state: 'advance-elements',
-                        name: 'Form-Elements-Advance'
-                    }, {
-                        state: 'form-validation',
-                        name: 'Form Validation'
-                    }
-                ]
-            }, {
-                state: 'picker',
-                main_state: 'forms',
-                name: 'Form Picker',
-                type: 'link',
-                icon: 'icon-pencil-alt',
-                badge: [
-                    {
-                        type: 'warning',
-                        value: 'New'
-                    }
-                ]
-            }, {
-                state: 'masking',
-                main_state: 'forms',
-                name: 'Form Masking',
-                type: 'link',
-                icon: 'icon-write'
-            }
-        ]
-    },
     {
         label: 'Extension',
         main: [
@@ -69,11 +24,6 @@ var MENUITEMS = [
                 ]
             },
             {
-                state: 'file-upload-ui',
-                name: 'File Upload',
-                type: 'link',
-                icon: 'icon-cloud-up'
-            }, {
                 state: 'change-log',
                 name: 'Change Log',
                 type: 'link',
