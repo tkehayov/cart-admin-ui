@@ -34,14 +34,6 @@ const routes: Routes = [
         loadChildren: './theme/forms/forms.module#FormsModule'
       },
       {
-        path: 'maintenance/error',
-        loadChildren: './theme/maintenance/error/error.module#ErrorModule'
-      },
-      {
-        path: 'maintenance/coming-soon',
-        loadChildren: './theme/maintenance/coming-soon/coming-soon.module#ComingSoonModule'
-      },
-      {
         path: 'user',
         loadChildren: './theme/user/user.module#UserModule'
       },
@@ -60,20 +52,6 @@ const routes: Routes = [
       {
         path: 'simple-page',
         loadChildren: './theme/simple-page/simple-page.module#SimplePageModule'
-      }
-    ]
-  },
-  {
-    path: '',
-    component: AuthComponent,
-    children: [
-      {
-        path: 'auth',
-        loadChildren: './theme/auth/auth.module#AuthModule'
-      },
-      {
-        path: 'maintenance/offline-ui',
-        loadChildren: './theme/maintenance/offline-ui/offline-ui.module#OfflineUiModule'
       }
     ]
   }
