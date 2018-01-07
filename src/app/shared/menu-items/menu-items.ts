@@ -209,13 +209,6 @@ const MENUITEMS = [
             name: 'Slider'
           }
         ]
-      },
-      {
-        state: 'animations',
-        short_label: 'A',
-        name: 'Animations',
-        type: 'link',
-        icon: 'icon-reload rotate-refresh'
       }
     ]
   },
