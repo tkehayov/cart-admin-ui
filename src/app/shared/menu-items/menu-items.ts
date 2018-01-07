@@ -94,10 +94,6 @@ const MENUITEMS = [
           {
             state: 'data',
             name: 'Data'
-          },
-          {
-            state: 'chart',
-            name: 'Chart'
           }
         ]
       }
@@ -150,55 +146,6 @@ const MENUITEMS = [
         type: 'link',
         icon: 'icon-shortcode'
       }
-    ]
-  },
-  {
-    label: 'Chart And Map',
-    main: [
-      {
-        state: 'charts',
-        short_label: 'C',
-        name: 'Charts',
-        type: 'sub',
-        icon: 'icon-bar-chart-alt',
-        children: [
-          {
-            state: 'google',
-            name: 'Google'
-          }, {
-            state: 'chart-js',
-            name: 'ChartJS'
-          }, {
-            state: 'radial',
-            name: 'Radial'
-          }, {
-            state: 'c3-js',
-            name: 'C3 JS'
-          }
-        ]
-      },
-      {
-        state: 'map',
-        short_label: 'M',
-        name: 'Maps',
-        type: 'sub',
-        icon: 'icon-map-alt',
-        children: [
-          {
-            state: 'google',
-            name: 'Google'
-          }
-        ]
-      },
-      /*{
-        state: 'landing',
-        short_label: 'L',
-        external: 'http://html.codedthemes.com/gradient-able-5/default/landingpage',
-        name: 'Landing Page',
-        type: 'external',
-        icon: 'icon-mobile',
-        target: true
-      }*/
     ]
   },
   {

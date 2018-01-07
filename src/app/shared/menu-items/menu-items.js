@@ -82,18 +82,6 @@ var MENUITEMS = [
         ]
     },
     {
-        label: 'Chart And Map',
-        main: [
-            {
-                state: 'landing',
-                name: 'Landing Page',
-                type: 'link',
-                icon: 'icon-mobile',
-                target: true
-            }
-        ]
-    },
-    {
         label: 'Pages',
         main: [
             {

@@ -58,14 +58,6 @@ const routes: Routes = [
         loadChildren: './theme/extension/file-upload-ui/file-upload-ui.module#FileUploadUiModule'
       },
       {
-        path: 'charts',
-        loadChildren: './theme/chart/chart.module#ChartModule'
-      },
-      {
-        path: 'map',
-        loadChildren: './theme/map/map.module#MapModule'
-      },
-      {
         path: 'simple-page',
         loadChildren: './theme/simple-page/simple-page.module#SimplePageModule'
       }
