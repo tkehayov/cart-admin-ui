@@ -114,22 +114,6 @@ var MENUITEMS = [
                 ]
             }
         ]
-    },
-    {
-        label: 'Support',
-        main: [
-            {
-                state: 'documentation',
-                name: 'Documentation',
-                type: 'link',
-                icon: 'icon-file'
-            }, {
-                state: 'submit-issue',
-                name: 'Submit Issue',
-                type: 'link',
-                icon: 'icon-layout-list-post'
-            }
-        ]
     }
 ];
 var MenuItems = (function () {

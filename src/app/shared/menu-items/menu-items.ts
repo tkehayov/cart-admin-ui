@@ -147,29 +147,6 @@ const MENUITEMS = [
         icon: 'icon-shortcode'
       }
     ]
-  },
-  {
-    label: 'Support',
-    main: [
-      /*{
-        state: 'documentation',
-        short_label: 'D',
-        name: 'Documentation',
-        external: 'http://html.codedthemes.com/guru-able/doc-angular-4',
-        type: 'external',
-        icon: 'icon-file',
-        target: true
-      },*/
-      {
-        state: 'submit-issue',
-        short_label: 'S',
-        external: 'https://codedthemes.com/submit-ticket/',
-        name: 'Submit Issue',
-        type: 'external',
-        icon: 'icon-layout-list-post',
-        target: true
-      }
-    ]
   }
 ];
 
