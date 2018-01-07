@@ -95,24 +95,8 @@ var MENUITEMS = [
                         name: 'No One'
                     }
                 ]
-            }, {
-                state: 'invoice',
-                name: 'Invoice',
-                type: 'sub',
-                icon: 'icon-layout-media-right',
-                children: [
-                    {
-                        state: 'basic',
-                        name: 'Invoice'
-                    }, {
-                        state: 'summary',
-                        name: 'Invoice Summary'
-                    }, {
-                        state: 'list',
-                        name: 'Invoice List'
-                    }
-                ]
-            }, {
+            },
+            {
                 state: 'file-upload-ui',
                 name: 'File Upload',
                 type: 'link',

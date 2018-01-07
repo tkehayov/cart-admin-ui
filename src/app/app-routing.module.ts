@@ -34,10 +34,6 @@ const routes: Routes = [
         loadChildren: './theme/forms/forms.module#FormsModule'
       },
       {
-        path: 'invoice',
-        loadChildren: './theme/extension/invoice/invoice.module#InvoiceModule'
-      },
-      {
         path: 'file-upload-ui',
         loadChildren: './theme/extension/file-upload-ui/file-upload-ui.module#FileUploadUiModule'
       },

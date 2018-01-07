@@ -149,46 +149,6 @@ const MENUITEMS = [
     ]
   },
   {
-    label: 'Extension',
-    main: [
-      {
-        state: 'invoice',
-        short_label: 'I',
-        name: 'Invoice',
-        type: 'sub',
-        icon: 'icon-layout-media-right',
-        children: [
-          {
-            state: 'basic',
-            name: 'Invoice'
-          }, {
-            state: 'summary',
-            name: 'Invoice Summary'
-          }, {
-            state: 'list',
-            name: 'Invoice List'
-          }
-        ]
-      },
-      {
-        state: 'file-upload-ui',
-        short_label: 'F',
-        name: 'File Upload',
-        type: 'link',
-        icon: 'icon-cloud-up'
-      },
-      /*{
-        state: 'documentation',
-        short_label: 'D',
-        name: 'Documentation',
-        external: 'http://html.codedthemes.com/gradient-able/doc-angular-5',
-        type: 'external',
-        icon: 'icon-file',
-        target: true
-      }*/
-    ]
-  },
-  {
     label: 'Other',
     main: [
       {
