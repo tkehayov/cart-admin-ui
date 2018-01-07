@@ -151,22 +151,7 @@ const MENUITEMS = [
   {
     label: 'Pages',
     main: [
-      {
-        state: 'user',
-        short_label: 'U',
-        name: 'User Profile',
-        type: 'sub',
-        icon: 'icon-user',
-        children: [
-          {
-            state: 'profile',
-            name: 'User Profile'
-          }, {
-            state: 'card',
-            name: 'User Card'
-          }
-        ]
-      }
+
     ]
   },
   {

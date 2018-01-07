@@ -84,21 +84,6 @@ var MENUITEMS = [
     {
         label: 'Pages',
         main: [
-            {
-                state: 'user',
-                name: 'User Profile',
-                type: 'sub',
-                icon: 'icon-user',
-                children: [
-                    {
-                        state: 'profile',
-                        name: 'User Profile'
-                    }, {
-                        state: 'card',
-                        name: 'User Card'
-                    }
-                ]
-            }
         ]
     },
     {
