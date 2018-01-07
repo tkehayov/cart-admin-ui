@@ -116,58 +116,6 @@ var MENUITEMS = [
         ]
     },
     {
-        label: 'Other',
-        main: [
-            {
-                state: '',
-                name: 'Menu Levels',
-                type: 'sub',
-                icon: 'icon-direction-alt',
-                children: [
-                    {
-                        state: '',
-                        name: 'Menu Level 2.1',
-                    }, {
-                        state: '',
-                        name: 'Menu Level 2.2',
-                        type: 'sub',
-                        children: [
-                            {
-                                state: '',
-                                name: 'Menu Level 2.2.1'
-                            },
-                            {
-                                state: '',
-                                name: 'Menu Level 2.2.2'
-                            }
-                        ]
-                    }, {
-                        state: '',
-                        name: 'Menu Level 2.3'
-                    }, {
-                        state: '',
-                        name: 'Menu Level 2.4',
-                        type: 'sub',
-                        children: [
-                            {
-                                state: '',
-                                name: 'Menu Level 2.4.1'
-                            },
-                            {
-                                state: '',
-                                name: 'Menu Level 2.4.2'
-                            }
-                        ]
-                    }
-                ]
-            }, {
-                state: 'simple-page',
-                name: 'Simple Page',
-                type: 'link',
-                icon: 'icon-layout-sidebar-left'
-            }
-        ]
-    }, {
         label: 'Support',
         main: [
             {
