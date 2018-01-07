@@ -30,10 +30,6 @@ const routes: Routes = [
         loadChildren: './theme/widget/widget.module#WidgetModule'
       },
       {
-        path: 'basic',
-        loadChildren: './theme/ui-elements/basic/basic.module#BasicModule'
-      },
-      {
         path: 'forms',
         loadChildren: './theme/forms/forms.module#FormsModule'
       },
