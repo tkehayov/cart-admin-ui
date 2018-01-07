@@ -18,10 +18,6 @@ const routes: Routes = [
         loadChildren: './add-on/add-on.module#AddOnModule'
       },
       {
-        path: 'advance',
-        loadChildren: './advance-elements/advance-elements.module#AdvanceElementsModule'
-      },
-      {
         path: 'validation',
         loadChildren: './form-validation/form-validation.module#FormValidationModule'
       },

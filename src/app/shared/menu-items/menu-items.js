@@ -77,32 +77,6 @@ var MENUITEMS = [
                         name: 'Other'
                     },
                 ]
-            },
-            {
-                state: 'advance',
-                name: 'Advance Components',
-                type: 'sub',
-                icon: 'icon-crown',
-                children: [
-                    {
-                        state: 'modal',
-                        name: 'Modal'
-                    },
-                    {
-                        state: 'notifications',
-                        name: 'Notifications'
-                    },
-                    {
-                        state: 'notify',
-                        name: 'PNOTIFY',
-                        badge: [
-                            {
-                                type: 'info',
-                                value: 'New'
-                            }
-                        ]
-                    },
-                ]
             }
         ]
     },

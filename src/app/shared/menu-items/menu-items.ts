@@ -174,41 +174,6 @@ const MENUITEMS = [
             name: 'Other'
           },
         ]
-      },
-      {
-        state: 'advance',
-        short_label: 'A',
-        name: 'Advance',
-        type: 'sub',
-        icon: 'icon-crown',
-        children: [
-          {
-            state: 'modal',
-            name: 'Modal'
-          },
-          {
-            state: 'notifications',
-            name: 'Notifications'
-          },
-          {
-            state: 'notify',
-            name: 'PNOTIFY',
-            badge: [
-              {
-                type: 'info',
-                value: 'New'
-              }
-            ]
-          },
-          {
-            state: 'rating',
-            name: 'Rating'
-          },
-          {
-            state: 'slider',
-            name: 'Slider'
-          }
-        ]
       }
     ]
   },
