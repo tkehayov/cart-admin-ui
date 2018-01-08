@@ -16,6 +16,10 @@ const routes: Routes = [
       {
         path: 'products',
         loadChildren: './theme/products/products.module#ProductsModule'
+      },
+      {
+        path: 'products/add',
+        loadChildren: './theme/products/add/addproduct.module#AddProductModule'
       }
     ]
   }

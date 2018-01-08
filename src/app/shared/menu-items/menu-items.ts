@@ -38,7 +38,7 @@ const MENUITEMS = [
         state: 'products',
         name: 'Products',
         type: 'link',
-        icon: 'icon-layout-cta-right'
+        icon: 'icon-dropbox'
       }
     ],
   }
