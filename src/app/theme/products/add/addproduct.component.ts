@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { CustomValidators } from 'ng2-validation';
 
 @Component({
   selector: 'app-product',
@@ -8,10 +10,28 @@ import { Component, OnInit } from '@angular/core';
     './../../../../assets/icon/icofont/css/icofont.scss']
 })
 export class AddProductComponent implements OnInit {
+  productForm: FormGroup;
+  submitted: boolean;
 
-  constructor() { }
+  constructor() {
+
+    const name = new FormControl('', Validators.required);
+    const description = new FormControl('', Validators.required);
+
+    this.productForm = new FormGroup({
+      name: name,
+      description: description
+    });
+    /*Basic validation end*/
+
+  }
 
   ngOnInit() {
+  }
+
+  onSubmit() {
+    this.submitted = true;
+    console.log(this.productForm);
   }
 
 }
