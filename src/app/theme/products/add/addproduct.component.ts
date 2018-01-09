@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { CustomValidators } from 'ng2-validation';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Component({
   selector: 'app-product',
@@ -10,6 +11,7 @@ import { CustomValidators } from 'ng2-validation';
     './../../../../assets/icon/icofont/css/icofont.scss']
 })
 export class AddProductComponent implements OnInit {
+
   productForm: FormGroup;
   submitted: boolean;
 
@@ -31,7 +33,10 @@ export class AddProductComponent implements OnInit {
 
   onSubmit() {
     this.submitted = true;
-    console.log(this.productForm);
+
+    if(this.productForm.status==="VALID"){
+        console.log(this.productForm.value);
+    }
   }
 
 }
