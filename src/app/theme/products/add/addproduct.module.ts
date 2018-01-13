@@ -3,9 +3,9 @@ import { CommonModule } from '@angular/common';
 import { AddProductComponent } from './addproduct.component';
 import { AddProductRoutingModule } from './addproduct-routing.module';
 import { SharedModule } from '../../../shared/shared.module';
-// import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import {SimpleNotificationsModule} from 'angular2-notifications';
 
 @NgModule({
   imports: [
@@ -14,9 +14,11 @@ import { HttpClientModule } from '@angular/common/http';
     SharedModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    SimpleNotificationsModule.forRoot()
   ],
-  declarations: [AddProductComponent]
+  declarations: [AddProductComponent],
+  bootstrap: [AddProductComponent]
 })
 export class AddProductModule {
 

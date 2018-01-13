@@ -3,6 +3,8 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { CustomValidators } from 'ng2-validation';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { BASICENDPOINT } from '../../../constants';
+import { NotificationsService } from 'angular2-notifications';
+
 @Component({
   selector: 'app-product',
   templateUrl: './addproduct.component.html',
@@ -15,7 +17,14 @@ export class AddProductComponent implements OnInit {
   submitted: boolean;
   results: string[];
 
-  constructor(private http: HttpClient) {
+  // pnotify options
+  options: any = {
+    position: ['bottom', 'right'],
+    timeOut: 5000,
+    theClass:'small-icon'
+  };
+
+  constructor(private http: HttpClient, private servicePNotify: NotificationsService) {
     const name = new FormControl('', Validators.required);
     const description = new FormControl('', Validators.required);
 
@@ -28,20 +37,20 @@ export class AddProductComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log(BASICENDPOINT);
   }
 
   onSubmit() {
+    this.servicePNotify.remove();
     this.submitted = true;
 
     if (this.productForm.status === "VALID") {
       // this.http.get(BASICENDPOINT+'/api/items').subscribe(data => {
-        this.http.post(BASICENDPOINT+'/',this.productForm.value).subscribe(data => {
-      // Read the result field from the JSON response.
-      console.log(data);
-        // this.results = data['results'];
+      this.http.post(BASICENDPOINT + '/products', this.productForm.value).subscribe(data => {
+        this.servicePNotify.success(
+          "",
+          "Success!"
+        );
       });
-      console.log(this.productForm.value);
     }
   }
 
