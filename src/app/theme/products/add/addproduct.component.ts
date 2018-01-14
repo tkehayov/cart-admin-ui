@@ -44,7 +44,6 @@ export class AddProductComponent implements OnInit {
     this.submitted = true;
 
     if (this.productForm.status === "VALID") {
-      // this.http.get(BASICENDPOINT+'/api/items').subscribe(data => {
       this.http.post(BASICENDPOINT + '/products', this.productForm.value).subscribe(data => {
         this.servicePNotify.success(
           "",

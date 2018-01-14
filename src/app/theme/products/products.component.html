@@ -1,3 +1,23 @@
-<app-card [title]="'Basic Buttons'">
-  <button class="btn btn-outline-primary" routerLink="/products/add"><i class="icofont icofont-plus"></i>Add Product</button>
-</app-card>
+<div class="row">
+  <div class="col-sm-12">
+    <app-card>
+      <button class="btn btn-outline-primary" routerLink="/products/add"><i class="icofont icofont-plus"></i>Add Product</button>
+    </app-card>
+
+    <app-card [title]="'List products'">
+      <ngx-datatable class="data-table" [rows]="products" [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50" [rowHeight]="'auto'" [limit]="10">
+
+        <ngx-datatable-column name="Name"></ngx-datatable-column>
+        <ngx-datatable-column name="Description"></ngx-datatable-column>
+        <ngx-datatable-column name="Actions">
+          <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+            <button class="btn btn-info btn-mini btn-outline-info"><i class="icofont icofont-info-square"></i>Details</button>
+            <button class="btn btn-danger btn-mini btn-outline-danger"><i class="icofont icofont-trash"></i>Delete</button>
+          </ng-template>
+        </ngx-datatable-column>
+      </ngx-datatable>
+    </app-card>
+  </div>
+</div>
+
+<!-- </app-card> -->
