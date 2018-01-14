@@ -29,7 +29,7 @@ export class ProductsComponent implements OnInit {
     });
   }
 
-  delete() {
+  delete(id: integer) {
     swal({
       title: 'Are you sure?',
       text: 'Product wont be able to revert',
@@ -44,14 +44,13 @@ export class ProductsComponent implements OnInit {
       buttonsStyling: false
     }).then((result) => {
       if (result.value) {
-        // TODO change with dynamic id
-        this.http.delete(BASICENDPOINT + '/products/23').subscribe(data => {
+        this.http.delete(BASICENDPOINT + '/products/' + id).subscribe(data => {
           swal(
             'Deleted!',
             'Product has been deleted.',
             'success'
           )
-          
+
           this.http.get(BASICENDPOINT + '/products').subscribe(data => {
             this.products = data;
           });
