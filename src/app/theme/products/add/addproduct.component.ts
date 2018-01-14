@@ -21,19 +21,19 @@ export class AddProductComponent implements OnInit {
   options: any = {
     position: ['bottom', 'right'],
     timeOut: 5000,
-    theClass:'small-icon'
+    theClass: 'small-icon'
   };
 
   constructor(private http: HttpClient, private servicePNotify: NotificationsService) {
     const name = new FormControl('', Validators.required);
     const description = new FormControl('', Validators.required);
+    const salePrice = new FormControl('', [Validators.required,CustomValidators.number]);
 
     this.productForm = new FormGroup({
       name: name,
-      description: description
+      description: description,
+      salePrice: salePrice
     });
-    /*Basic validation end*/
-
   }
 
   ngOnInit() {
