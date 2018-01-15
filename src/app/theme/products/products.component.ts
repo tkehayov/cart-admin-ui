@@ -45,6 +45,7 @@ export class ProductsComponent implements OnInit {
     }).then((result) => {
       if (result.value) {
         this.http.delete(BASICENDPOINT + '/products/' + id).subscribe(data => {
+          console.log(id);
           swal(
             'Deleted!',
             'Product has been deleted.',
