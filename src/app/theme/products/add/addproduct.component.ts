@@ -22,7 +22,7 @@ export class AddProductComponent implements OnInit {
     isHTML5: true
   });
   hasBaseDropZoneOver = false;
-  hasAnotherDropZoneOver = false;
+
 
   productForm: FormGroup;
   submitted: boolean;

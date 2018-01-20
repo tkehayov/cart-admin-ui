@@ -20,6 +20,10 @@ const routes: Routes = [
       {
         path: 'products/add',
         loadChildren: './theme/products/add/addproduct.module#AddProductModule'
+      },
+      {
+        path: 'gallery',
+        loadChildren: './theme/gallery/gallery.module#GalleryModule'
       }
     ]
   }

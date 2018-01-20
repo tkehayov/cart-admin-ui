@@ -14,9 +14,9 @@ import {SimpleNotificationsModule} from 'angular2-notifications';
     AddProductRoutingModule,
     SharedModule,
     FormsModule,
+    FileUploadModule,
     ReactiveFormsModule,
     HttpClientModule,
-    FileUploadModule,
     SimpleNotificationsModule.forRoot()
   ],
   declarations: [AddProductComponent],

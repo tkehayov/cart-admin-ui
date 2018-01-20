@@ -39,6 +39,12 @@ const MENUITEMS = [
         name: 'Products',
         type: 'link',
         icon: 'icon-dropbox'
+      },
+      {
+        state: 'gallery',
+        name: 'Gallery',
+        type: 'link',
+        icon: 'icon-gallery'
       }
     ],
   }
