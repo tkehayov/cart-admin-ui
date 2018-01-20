@@ -13,7 +13,7 @@ import swal from 'sweetalert2';
   styleUrls: [
     './products.component.scss',
     './../../../assets/icon/icofont/css/icofont.scss',
-    '../../../../node_modules/sweetalert2/src/sweetalert2.scss'
+    '../../../../node_modules/sweetalert2/src/sweetalert2.scss']
 })
 
 export class ProductsComponent implements OnInit {
@@ -25,11 +25,11 @@ export class ProductsComponent implements OnInit {
 
   ngOnInit() {
     this.http.get(BASICENDPOINT + '/products').subscribe(data => {
-      this.products = data;
+      this.products = JSON.parse(JSON.stringify(data));
     });
   }
 
-  delete(id: integer) {
+  delete(id) {
     swal({
       title: 'Are you sure?',
       text: 'Product wont be able to revert',
@@ -53,7 +53,7 @@ export class ProductsComponent implements OnInit {
           )
 
           this.http.get(BASICENDPOINT + '/products').subscribe(data => {
-            this.products = data;
+            this.products = JSON.parse(JSON.stringify(data));
           });
         });
       } else if (result.dismiss === 'cancel') {
@@ -66,6 +66,7 @@ export class ProductsComponent implements OnInit {
     }).catch(swal.noop);
 
   }
+
   openSuccessCancelSwal() {
 
   }
