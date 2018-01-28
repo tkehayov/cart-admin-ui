@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { GalleryComponent } from './gallery.component';
 import {GalleryRoutingModule} from './gallery-routing.module';
 import {SharedModule} from '../../shared/shared.module';
-import {FileUploadModule} from 'ng2-file-upload';
+import { ImageCropperModule } from 'ngx-image-cropper';
 
     // NgxDatatableModule
 @NgModule({
@@ -11,7 +11,7 @@ import {FileUploadModule} from 'ng2-file-upload';
     CommonModule,
     GalleryRoutingModule,
     SharedModule,
-    FileUploadModule
+    ImageCropperModule
   ],
   declarations: [GalleryComponent]
 })
