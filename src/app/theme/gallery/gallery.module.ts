@@ -4,6 +4,7 @@ import { GalleryComponent } from './gallery.component';
 import {GalleryRoutingModule} from './gallery-routing.module';
 import {SharedModule} from '../../shared/shared.module';
 import { ImageCropperModule } from 'ngx-image-cropper';
+import {SimpleNotificationsModule} from 'angular2-notifications';
 
     // NgxDatatableModule
 @NgModule({
@@ -11,7 +12,8 @@ import { ImageCropperModule } from 'ngx-image-cropper';
     CommonModule,
     GalleryRoutingModule,
     SharedModule,
-    ImageCropperModule
+    ImageCropperModule,
+    SimpleNotificationsModule.forRoot()
   ],
   declarations: [GalleryComponent]
 })

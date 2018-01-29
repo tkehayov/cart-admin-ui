@@ -3,8 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { BASICENDPOINT } from '../../constants';
-import swal from 'sweetalert2';
-const URL = 'http://localhost:8080/gallery/image';
+import { NotificationsService } from 'angular2-notifications';
 
 @Component({
   selector: 'app-gallery',
@@ -17,27 +16,40 @@ const URL = 'http://localhost:8080/gallery/image';
 })
 
 export class GalleryComponent implements OnInit {
-  images=[];
+  basicEndPoint = BASICENDPOINT;
+  images = [];
   imageSizes = [{
-    key: "front image",
+    key: "front image - width 300",
     value: 300
   },
   {
-    key: "inner image",
+    key: "inner image - width 200",
     value: 200
   },
   {
-    key: "background image",
+    key: "background image - width 1000",
     value: 1000
   }];
   selectedSize = this.imageSizes[0].value;
 
+  // Pnotify options
+  options: any = {
+    position: ['bottom', 'right'],
+    timeOut: 5000,
+    theClass: 'small-icon'
+  };
+
   imageChangedEvent: any = '';
   croppedImage: any = '';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private servicePNotify: NotificationsService) { }
 
   ngOnInit() {
+    this.listImages();
+
+  }
+
+  listImages() {
     this.http.get(BASICENDPOINT + '/gallery/imagelist').subscribe(data => {
       this.images = JSON.parse(JSON.stringify(data));
     });
@@ -52,19 +64,24 @@ export class GalleryComponent implements OnInit {
   }
 
   send() {
+    this.servicePNotify.remove();
     var formData = new FormData();
     var croppedImage = this.dataURItoBlob(this.croppedImage);
 
     formData.set("file", croppedImage, "bat.jpg");
 
-    this.http.post('http://localhost:8080/gallery/image', formData).subscribe(data => {
-      console.log("data")
+    this.http.post(BASICENDPOINT + '/gallery/image', formData).subscribe(data => {
+      this.listImages();
+      this.servicePNotify.success(
+        "Success!",
+        "Image uploaded"
+      );
     });
 
   }
 
   optionsSelected(event) {
-    this.selectedSize =event;
+    this.selectedSize = event;
   }
 
   dataURItoBlob(dataURI) {

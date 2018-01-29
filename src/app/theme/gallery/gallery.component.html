@@ -1,20 +1,10 @@
+<simple-notifications [options]="options"></simple-notifications>
 <div class="row">
   <div class="col-sm-12">
-    <app-card [title]="'File List'">
-      <div *ngFor="let image of images">
-        <img class="img-100" src="http://localhost:8080/gallery/image/{{image}}" />
-      </div>
-    </app-card>
-  </div>
-</div>
-
-<div class="row">
-  <div class="col-sm-12">
-    <app-card [title]="'File List'">
+    <app-card [title]="'Add image'">
 
       <!-- button Default -->
       <div class="col-sm-12 col-xl-3 m-b-30">
-        <h4 class="sub-title">Primary Select</h4>
         <select name="select" class="form-control form-control-primary" (change)='optionsSelected($event.target.value)'>
               <option *ngFor="let i of imageSizes" value="{{i.value}}">{{i.key}}</option>
         </select>
@@ -24,7 +14,25 @@
         <input type="file" name="file" (change)="fileChangeEvent($event)" />
         <image-cropper [imageChangedEvent]="imageChangedEvent" [maintainAspectRatio]="true" [aspectRatio]="4 / 3" [resizeToWidth]="this.selectedSize" format="png" (imageCropped)="imageCropped($event)"></image-cropper>
         <img [src]="croppedImage" />
+      </div>
+      <br>
+      <div class="">
         <button class="btn btn-success" (click)="send()"><i class="fa fa-upload"></i>Upload</button>
+      </div>
+    </app-card>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-sm-12">
+    <app-card [title]="'Image list'">
+      <div class="card-block">
+        <div class="popular-img-block">
+          <img class="img-fluid" *ngFor="let image of images" src="{{basicEndPoint}}/gallery/image/{{image}}" />
+        </div>
+        <div class="text-center m-t-15">
+          <button class="btn btn-outline-primary btn-round btn-sm">Load More</button>
+        </div>
       </div>
     </app-card>
   </div>
