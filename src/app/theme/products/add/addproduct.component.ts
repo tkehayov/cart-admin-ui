@@ -3,7 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { CustomValidators } from 'ng2-validation';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { BASICENDPOINT } from '../../../constants';
-import {transition, trigger, style, animate} from '@angular/animations';
+import { transition, trigger, style, animate } from '@angular/animations';
 import { NotificationsService } from 'angular2-notifications';
 
 @Component({
@@ -28,7 +28,7 @@ import { NotificationsService } from 'angular2-notifications';
 
 export class AddProductComponent implements OnInit {
   basicEndPoint = BASICENDPOINT;
-  
+  images = [];
   productForm: FormGroup;
   submitted: boolean;
   results: string[];
@@ -74,5 +74,13 @@ export class AddProductComponent implements OnInit {
     this.http.get(BASICENDPOINT + '/gallery/imagelist').subscribe(data => {
       this.images = JSON.parse(JSON.stringify(data));
     });
+  }
+
+  addproductFeatureImage(id) {
+    this.productForm.value.featureImage = id;
+    this.servicePNotify.success(
+      "Success!",
+      "Feature image added"
+    );
   }
 }
