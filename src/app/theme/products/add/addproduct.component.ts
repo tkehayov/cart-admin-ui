@@ -32,6 +32,7 @@ export class AddProductComponent implements OnInit {
   productForm: FormGroup;
   submitted: boolean;
   results: string[];
+  featureImageUrl = "";
 
   // pnotify options
   options: any = {
@@ -63,8 +64,8 @@ export class AddProductComponent implements OnInit {
     if (this.productForm.status === "VALID") {
       this.http.post(BASICENDPOINT + '/products', this.productForm.value).subscribe(data => {
         this.servicePNotify.success(
-          "",
-          "Success!"
+          "Success",
+          "Product added"
         );
       });
     }
@@ -76,10 +77,11 @@ export class AddProductComponent implements OnInit {
     });
   }
 
-  addproductFeatureImage(id) {
+  addproductFeatureImage(id,filename) {
     this.productForm.value.featureImage = id;
+    this.featureImageUrl = filename;
     this.servicePNotify.success(
-      "Success!",
+      "Success",
       "Feature image added"
     );
   }
