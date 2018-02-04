@@ -9,7 +9,7 @@
 <div class="row">
   <div class="col-sm-12">
     <app-card [title]="'List products'">
-      <ngx-datatable class="data-table" [rows]="products" [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50" [rowHeight]="'auto'" [limit]="10">
+      <ngx-datatable class="data-table" [rows]="products" [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50" [rowHeight]="'auto'">
 
         <ngx-datatable-column name="Name"></ngx-datatable-column>
         <ngx-datatable-column name="Description"></ngx-datatable-column>
@@ -19,6 +19,13 @@
             <button class="btn btn-danger btn-mini btn-outline-danger" (click)="delete(row.id)"><i class="icofont icofont-trash"></i>Delete</button>
           </ng-template>
         </ngx-datatable-column>
+
+        <ngx-datatable-footer>
+          <ng-template let-curPage="curPage" let-offset="offset" let-pageSize="pageSize" let-rowCount="rowCount" let-selectedCount="selectedCount" ngx-datatable-footer-template>
+          </ng-template>
+          <datatable-pager [count]="rowCount" [page]="curPage" [size]="pageSize" (change)="handlePageChange($event)">
+          </datatable-pager>
+        </ngx-datatable-footer>
       </ngx-datatable>
     </app-card>
   </div>

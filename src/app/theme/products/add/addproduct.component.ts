@@ -33,11 +33,15 @@ export class AddProductComponent implements OnInit {
   submitted: boolean;
   results: string[];
   featureImageUrl = "";
+  gallery = {
+    "id":[],
+    "filenames":[]
+  };
 
   // pnotify options
   options: any = {
     position: ['bottom', 'right'],
-    timeOut: 5000,
+    timeOut: 1000,
     theClass: 'small-icon'
   };
 
@@ -77,12 +81,23 @@ export class AddProductComponent implements OnInit {
     });
   }
 
-  addproductFeatureImage(id,filename) {
+  addproductFeatureImage(id, filename) {
     this.productForm.value.featureImage = id;
     this.featureImageUrl = filename;
     this.servicePNotify.success(
       "Success",
       "Feature image added"
+    );
+  }
+
+  addproductGalleryImage(id, filename) {
+    this.gallery.filenames.push(filename);
+    this.gallery.id.push(id);
+    this.productForm.value.gallery=this.gallery.id;
+
+    this.servicePNotify.success(
+      "Success",
+      "Image added to gallery"
     );
   }
 }

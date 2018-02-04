@@ -61,12 +61,25 @@
                       </div>
                     </ng-template>
                   </ngb-tab>
+
                   <ngb-tab title="Gallery">
                     <ng-template ngbTabContent>
                       <div [@fadeInOutTranslate] class="m-t-15">
                         <div class="m-4">
-                          <h6>Profile</h6>
-                          <p>Lorem ipsum dolor sit amet, consectetur adipiscing lorem impus dolorsit.onsectetur adipiscing</p>
+                          <div class="row users-card">
+                            <div class="col-lg-4 col-xl-4 col-md-4" *ngFor="let image of images">
+                              <div class="card rounded-card user-card">
+                                <div class="img-hover">
+                                  <img class="img-fluid" src="{{basicEndPoint}}/gallery/image/{{image.filename}}" />
+                                  <div class="img-overlay img-radius">
+                                    <span>
+                  <a href="javascript:" class="btn btn-sm btn-primary" data-popup="lightbox" (click)="addproductGalleryImage(image.id,image.filename)"><i class="icofont icofont-check"></i></a>
+                  </span>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
                         </div>
                       </div>
                     </ng-template>
@@ -79,8 +92,24 @@
 
         <div *ngIf="featureImageUrl!=''" class="form-group row">
           <label class="col-sm-2 col-form-label">Feature Image</label>
+          <div class="col-lg-4 col-md-12">
+            <div class="popular-img-block">
+              <img class="img-fluid" src="{{basicEndPoint}}/gallery/image/{{featureImageUrl}}" />
+            </div>
+          </div>
+
           <div class="col-sm-10">
-            <img class="img-fluid" src="{{basicEndPoint}}/gallery/image/{{featureImageUrl}}" />
+
+
+          </div>
+        </div>
+
+        <div *ngIf="gallery.filenames.length!=0" class="form-group row">
+          <label class="col-sm-2 col-form-label">Gallery</label>
+          <div class="col-lg-4 col-md-12">
+            <div class="popular-img-block">
+              <img *ngFor="let image of gallery.filenames" class="img-fluid" src="{{basicEndPoint}}/gallery/image/{{image}}" />
+            </div>
           </div>
         </div>
 

@@ -24,7 +24,7 @@ export class ProductsComponent implements OnInit {
   constructor(private http: HttpClient) { }
 
   ngOnInit() {
-    this.http.get(BASICENDPOINT + '/products').subscribe(data => {
+    this.http.get(BASICENDPOINT + '/products/?size=10').subscribe(data => {
       this.products = JSON.parse(JSON.stringify(data));
     });
   }
@@ -52,7 +52,7 @@ export class ProductsComponent implements OnInit {
             'success'
           )
 
-          this.http.get(BASICENDPOINT + '/products').subscribe(data => {
+          this.http.get(BASICENDPOINT + '/products/?limit=3').subscribe(data => {
             this.products = JSON.parse(JSON.stringify(data));
           });
         });
