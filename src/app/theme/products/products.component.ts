@@ -17,15 +17,23 @@ import swal from 'sweetalert2';
 })
 
 export class ProductsComponent implements OnInit {
-  products = [];
+  products = {
+    data: [],
+    totalPages: 0
+  };
+
   showDialog = false;
   public config: any;
+  page = 0;
+  Arr = Array;
 
   constructor(private http: HttpClient) { }
 
   ngOnInit() {
-    this.http.get(BASICENDPOINT + '/products/?size=10').subscribe(data => {
-      this.products = JSON.parse(JSON.stringify(data));
+    this.http.get(BASICENDPOINT + '/products/?size=10&page=' + this.page).subscribe(data => {
+      var jsonData = JSON.parse(JSON.stringify(data));
+      this.products.data = jsonData.productList;
+      this.products.totalPages = jsonData.totalPages;
     });
   }
 
@@ -45,16 +53,13 @@ export class ProductsComponent implements OnInit {
     }).then((result) => {
       if (result.value) {
         this.http.delete(BASICENDPOINT + '/products/' + id).subscribe(data => {
-          console.log(id);
           swal(
             'Deleted!',
             'Product has been deleted.',
             'success'
           )
 
-          this.http.get(BASICENDPOINT + '/products/?limit=3').subscribe(data => {
-            this.products = JSON.parse(JSON.stringify(data));
-          });
+          this.ngOnInit();
         });
       } else if (result.dismiss === 'cancel') {
         swal(
@@ -67,8 +72,18 @@ export class ProductsComponent implements OnInit {
 
   }
 
-  openSuccessCancelSwal() {
-
+  nextPage(page: any): void {
+    this.page++;
+    this.ngOnInit();
   }
 
+  prevPage(page: any): void {
+    this.page--;
+    this.ngOnInit();
+  }
+
+  gotoPage(page) {
+    this.page = page;
+    this.ngOnInit();
+  }
 }
