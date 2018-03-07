@@ -6,6 +6,8 @@ import { SharedModule } from '../../../shared/shared.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import {SimpleNotificationsModule} from 'angular2-notifications';
+import { TreeModule } from 'angular-tree-component';
+// @import ;
 
 @NgModule({
   imports: [
@@ -13,6 +15,7 @@ import {SimpleNotificationsModule} from 'angular2-notifications';
     AddProductRoutingModule,
     SharedModule,
     FormsModule,
+    TreeModule,
     ReactiveFormsModule,
     HttpClientModule,
     SimpleNotificationsModule.forRoot()

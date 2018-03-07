@@ -11,7 +11,8 @@ import { NotificationsService } from 'angular2-notifications';
   templateUrl: './addproduct.component.html',
   styleUrls: [
     './addproduct.component.scss',
-    './../../../../assets/icon/icofont/css/icofont.scss'],
+    './../../../../assets/icon/icofont/css/icofont.scss'
+  ],
   animations: [
     trigger('fadeInOutTranslate', [
       transition(':enter', [
@@ -34,8 +35,8 @@ export class AddProductComponent implements OnInit {
   results: string[];
   featureImageUrl = "";
   gallery = {
-    "id":[],
-    "filenames":[]
+    "id": [],
+    "filenames": []
   };
 
   // pnotify options
@@ -44,6 +45,11 @@ export class AddProductComponent implements OnInit {
     timeOut: 1000,
     theClass: 'small-icon'
   };
+
+
+  state: ITreeState;
+  namen = "";
+  category = [];
 
   constructor(private http: HttpClient, private servicePNotify: NotificationsService) {
     const name = new FormControl('', Validators.required);
@@ -57,7 +63,12 @@ export class AddProductComponent implements OnInit {
     });
   }
 
+  selectCategory() {
+    this.productForm.value.categoryId=this.state.focusedNodeId;
+  }
+
   ngOnInit() {
+    this.listCategories();
     this.listImages();
   }
 
@@ -73,6 +84,12 @@ export class AddProductComponent implements OnInit {
         );
       });
     }
+  }
+
+  listCategories() {
+    this.http.get(BASICENDPOINT + '/categories').subscribe(data => {
+      this.category = JSON.parse(JSON.stringify(data));
+    });
   }
 
   listImages() {
@@ -93,7 +110,7 @@ export class AddProductComponent implements OnInit {
   addproductGalleryImage(id, filename) {
     this.gallery.filenames.push(filename);
     this.gallery.id.push(id);
-    this.productForm.value.gallery=this.gallery.id;
+    this.productForm.value.gallery = this.gallery.id;
 
     this.servicePNotify.success(
       "Success",
