@@ -24,6 +24,10 @@ const routes: Routes = [
       {
         path: 'gallery',
         loadChildren: './theme/gallery/gallery.module#GalleryModule'
+      },
+      {
+        path: 'orders',
+        loadChildren: './theme/orders/orders.module#OrdersModule'
       }
     ]
   }

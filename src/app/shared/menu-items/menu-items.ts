@@ -45,6 +45,12 @@ const MENUITEMS = [
         name: 'Gallery',
         type: 'link',
         icon: 'icon-gallery'
+      },
+      {
+        state: 'orders',
+        name: 'Orders',
+        type: 'link',
+        icon: 'icon-shopping-cart'
       }
     ],
   }
