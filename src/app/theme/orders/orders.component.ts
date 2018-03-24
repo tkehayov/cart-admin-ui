@@ -18,15 +18,21 @@ import { NotificationsService } from 'angular2-notifications';
 
 export class OrdersComponent implements OnInit {
   orders = {
-    data:[]
+    data: []
   };
   constructor(private http: HttpClient) { }
 
-  ngOnInit(){
+  ngOnInit() {
     this.http.get(BASICENDPOINT + '/orders').subscribe(data => {
       var jsonData = JSON.parse(JSON.stringify(data));
       this.orders.data = jsonData;
       console.log(this.orders.data);
+    });
+  }
+
+  updateStatus(order, status) {
+    this.http.put(BASICENDPOINT + '/orders', { "id": order.id, "status": status }).subscribe(data => {
+      order.status = status;
     });
   }
 }

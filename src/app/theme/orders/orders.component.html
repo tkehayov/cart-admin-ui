@@ -1,60 +1,42 @@
 <!-- <simple-notifications [options]="options"></simple-notifications> -->
 <div class="row">
   <div class="col-sm-12">
-    <app-card [title]="'Orders'">
+    <app-card [title]="'Orders'" [classHeader]="true" >
       <!-- tabs card start -->
       <div class="col-sm-12">
-        <app-card [cardClass]="'tab-card'" [cardOptionBlock]="true">
-          <div class="md-tabs">
-            <div class="table-responsive">
-              <table class="table">
-                <tr>
-                  <th>Image</th>
-                  <th>Product Code</th>
-                  <th>Customer</th>
-                  <th>Purchased On</th>
-                  <th>Status</th>
-                  <th>Transaction ID</th>
-                </tr>
-                <tr *ngFor="let order of orders.data">
-                  <td><img src="assets/images/product/prod2.jpg" alt="prod img" class="img-fluid"></td>
-                  <td>{{order.productId}}</td>
-                  <td>{{order.firstName}} {{order.lastName}}</td>
-                  <td>{{order.purchaseDate}}</td>
-                  <td><span [ngClass]="{
+        <table class="table data-table fullscreen">
+          <tr>
+            <th>Customer</th>
+            <th>Purchased On</th>
+            <th>Status</th>
+            <th>Action</th>
+          </tr>
+          <tr *ngFor="let order of orders.data">
+            <td>{{order.firstName}} {{order.lastName}}</td>
+            <td>{{order.purchaseDate}}</td>
+            <td><span [ngClass]="{
                   'label':order.status,
                   'label-danger':order.status === 'failed',
                   'label-warning':order.status === 'pending',
-                  'label-success':order.status === 'delivered'
-                }">{{order.status}}</span>
-                  </td>
-                  <td>#7234486</td>
-                </tr>
-                <tr>
-                  <td><img src="assets/images/product/prod3.jpg" alt="prod img" class="img-fluid"></td>
-                  <td>PNG002653</td>
-                  <td>Eugine Turner</td>
-                  <td>04-01-2017</td>
-                  <td><span class="label label-success">Delivered</span></td>
-                  <td>#7234417</td>
-                </tr>
-                <tr>
-                  <td><img src="assets/images/product/prod4.jpg" alt="prod img" class="img-fluid"></td>
-                  <td>PNG002156</td>
-                  <td>Jacqueline Howell</td>
-                  <td>03-01-2017</td>
-                  <td><span class="label label-warning">Pending</span></td>
-                  <td>#7234454</td>
-                </tr>
-              </table>
-            </div>
-            <div class="text-center">
-              <button class="btn btn-outline-primary btn-round btn-sm">Load More</button>
-            </div>
+                  'label-success':order.status === 'delivered'}">{{order.status}}</span>
+            </td>
+            <td>
+              <div ngbDropdown class="btn-group dropdown-split-primary">
+                <button type="button" class="label btn btn-mini btn-info btn-primary"><i class="icofont icofont-eye-alt"></i>View</button>
+                <button ngbDropdownToggle class="label btn btn-mini btn-info waves-effect waves-light" type="button"></button>
+                <div ngbDropdownMenu>
+                  <a class="dropdown-item waves-light waves-effect" (click)="updateStatus(order,'failed')" href="javascript:">failed</a>
+                  <a class="dropdown-item waves-light waves-effect" (click)="updateStatus(order,'pending')" href="javascript:">pending</a>
+                  <a class="dropdown-item waves-light waves-effect" (click)="updateStatus(order,'delivered')" href="javascript:">delivered</a>
+                </div>
+              </div>
+            </td>
+          </tr>
+        </table>
 
-
-          </div>
-        </app-card>
+        <div class="text-center" style="margin-top:60px;">
+          <button class="btn btn-outline-primary btn-round btn-sm">Load More</button>
+        </div>
       </div>
     </app-card>
   </div>
