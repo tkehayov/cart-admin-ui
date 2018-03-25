@@ -1,5 +1,5 @@
 import { Component, OnInit, AfterViewInit, ElementRef, ViewChild, ViewEncapsulation } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { RouterModule, Routes, Router } from '@angular/router';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { BASICENDPOINT } from '../../constants';
@@ -8,7 +8,6 @@ import { NotificationsService } from 'angular2-notifications';
 @Component({
   selector: 'app-orders',
   templateUrl: './orders.component.html',
-  // changeDetection: ChangeDetectionStrategy.OnPush,
   styleUrls: [
     './orders.component.scss',
     './../../../assets/icon/icofont/css/icofont.scss',
@@ -20,14 +19,17 @@ export class OrdersComponent implements OnInit {
   orders = {
     data: []
   };
-  constructor(private http: HttpClient) { }
+  constructor(private router: Router, private http: HttpClient) { }
 
   ngOnInit() {
     this.http.get(BASICENDPOINT + '/orders').subscribe(data => {
       var jsonData = JSON.parse(JSON.stringify(data));
       this.orders.data = jsonData;
-      console.log(this.orders.data);
     });
+  }
+
+  goDetail(id) {
+    this.router.navigate(['order/'+id]);
   }
 
   updateStatus(order, status) {

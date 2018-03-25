@@ -22,7 +22,7 @@
             </td>
             <td>
               <div ngbDropdown class="btn-group dropdown-split-primary">
-                <button type="button" class="label btn btn-mini btn-info btn-primary"><i class="icofont icofont-eye-alt"></i>View</button>
+                <button type="button" (click)="goDetail(order.id)" class="label btn btn-mini btn-info btn-primary"><i class="icofont icofont-eye-alt"></i>View</button>
                 <button ngbDropdownToggle class="label btn btn-mini btn-info waves-effect waves-light" type="button"></button>
                 <div ngbDropdownMenu>
                   <a class="dropdown-item waves-light waves-effect" (click)="updateStatus(order,'failed')" href="javascript:">failed</a>

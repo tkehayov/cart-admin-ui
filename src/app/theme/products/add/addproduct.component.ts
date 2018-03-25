@@ -46,7 +46,7 @@ export class AddProductComponent implements OnInit {
     theClass: 'small-icon'
   };
 
-//
+
   state: ITreeState;
   namen = "";
   category = [];
