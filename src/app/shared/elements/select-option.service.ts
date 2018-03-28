@@ -9,7 +9,7 @@ export class SelectOptionService {
     {value: '1', label: 'Wyoming'},
     {value: '2', label: 'Coming'},
     {value: '3', label: 'Henry Die'},
-    {value: '4', label: 'John Doe'}
+    {value: '4', label: 'Tihomir Kehayov'}
   ];
 
   private static readonly COUNTRIES: Array<IOption> = [
