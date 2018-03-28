@@ -1,8 +1,92 @@
 <!-- <simple-notifications [options]="options"></simple-notifications> -->
-<div class="row">
+<!-- <div class="row">
   <div class="col-sm-12">
     <app-card [title]="Order" [classHeader]="true" >
         hellos there
+    </app-card>
+  </div>
+</div> -->
+
+<div class="row">
+  <div class="col-sm-12">
+      <!-- List type card start -->
+      <div class="card">
+        <div class="row card-block">
+
+          <div class="col-md-12 col-lg-6">
+            <h6 class="sub-title">Order Details</h6>
+            <ul class="basic-list list-icons">
+              <li>
+                <h6>Order Id</h6>
+                <i class="icofont icofont-id text-primary p-absolute text-center d-block f-30"></i>
+                <p>{{order.id}}</p>
+              </li>
+              <li>
+                <i class="icofont icofont-calendar text-primary p-absolute text-center d-block f-30"></i>
+                <h6>Purchased On</h6>
+                <p>{{order.purchaseDate}}</p>
+              </li>
+              <li>
+                <h6>Status</h6>
+                <i class="icofont icofont-traffic-light text-primary p-absolute text-center d-block f-30"></i>
+                <p>{{order.status}}</p>
+              </li>
+              <li>
+                <h6>Delivery Address</h6>
+                <i class="icofont icofont-location-pin text-primary p-absolute text-center d-block f-30"></i>
+                <p>{{order.deliveryAddress}}</p>
+              </li>
+            </ul>
+          </div>
+
+          <div class="col-md-12 col-lg-6">
+            <h6 class="sub-title">Customer Details</h6>
+            <ul class="basic-list list-icons">
+              <li>
+                <h6>Name</h6>
+                <i class="icofont icofont-ui-user text-primary p-absolute text-center d-block f-30"></i>
+                <p>{{order.firstName}} {{order.lastName}}</p>
+              </li>
+              <li>
+                <i class="icofont icofont-email text-primary p-absolute text-center d-block f-30"></i>
+                <h6>Email</h6>
+                <p>{{order.email}}</p>
+              </li>
+
+              <li>
+                <h6>Phone</h6>
+                <i class="icofont icofont-phone text-primary p-absolute text-center d-block f-30"></i>
+                <p>{{order.phone}}</p>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <!-- List type card end -->
+    </div>
+  </div>
+
+
+<div class="row">
+  <div class="col-sm-12">
+    <app-card [title]="'Products'">
+      <table class="table data-table fullscreen" *ngFor="let product of products">
+        <tr>
+          <th></th>
+          <th>id</th>
+          <th>Name</th>
+          <th>Sale Price</th>
+          <th></th>
+        </tr>
+        <td>
+        </td>
+        <td>{{product.id}}</td>
+        <td>{{product.name}}</td>
+        <td>{{product.salePrice}}</td>
+        <td>
+          <button type="button" (click)="goProductDetail(product.id)" class="label btn btn-mini btn-info btn-primary"><i class="icofont icofont-eye-alt"></i>View</button>
+        </td>
+      </table>
     </app-card>
   </div>
 </div>
