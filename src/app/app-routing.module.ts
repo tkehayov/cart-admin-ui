@@ -22,6 +22,10 @@ const routes: Routes = [
         loadChildren: './theme/products/add/addproduct.module#AddProductModule'
       },
       {
+        path: 'products/view/:id',
+        loadChildren: './theme/products/view/viewproduct.module#ViewProductModule'
+      },
+      {
         path: 'gallery',
         loadChildren: './theme/gallery/gallery.module#GalleryModule'
       },

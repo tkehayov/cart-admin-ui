@@ -16,7 +16,7 @@ import { NotificationsService } from 'angular2-notifications';
 
 export class OrderComponent implements OnInit {
   queryParams: { id: "" };
-  order = {};
+  order = <any>{};
   products = [];
 
   constructor(private http: HttpClient, private route: ActivatedRoute) {
@@ -28,6 +28,7 @@ export class OrderComponent implements OnInit {
     this.http.get(BASICENDPOINT + '/orders/' + this.queryParams).subscribe(data => {
       var jsonData = JSON.parse(JSON.stringify(data));
       this.order = jsonData;
+      // this.order.productsId={};
       this.listProducts();
     });
   }
