@@ -45,6 +45,8 @@ export class OrderComponent implements OnInit {
 
   updateStatus(order, status) {
     this.http.put(BASICENDPOINT + '/orders', { "id": order.id, "status": status }).subscribe(data => {
+      // console.log()
+      order.status = status;
     });
   }
 

@@ -29,7 +29,23 @@
             <li>
               <h6>Status</h6>
               <i class="icofont icofont-traffic-light text-primary p-absolute text-center d-block f-30"></i>
-              <p>{{order.status}}</p>
+              <div>
+                <span [ngClass]="{
+                      'label':order.status,
+                      'label-danger':order.status === 'failed',
+                      'label-warning':order.status === 'pending',
+                      'label-success':order.status === 'delivered'}">{{order.status}}</span>
+                &nbsp;
+                <div ngbDropdown class="dropdown-primary">
+                  <button ngbDropdownToggle class="btn btn-mini btn-primary btn-outline-primary waves-effect waves-light icofont icofont-edit" type="button">
+                     Edit</button>
+                  <div ngbDropdownMenu>
+                    <a class="dropdown-item waves-light waves-effect" (click)="updateStatus(order,'failed')" href="javascript:">failed</a>
+                    <a class="dropdown-item waves-light waves-effect" (click)="updateStatus(order,'pending')" href="javascript:">pending</a>
+                    <a class="dropdown-item waves-light waves-effect" (click)="updateStatus(order,'delivered')" href="javascript:">delivered</a>
+                  </div>
+                </div>
+              </div>
             </li>
             <li>
               <h6>Delivery Address</h6>
