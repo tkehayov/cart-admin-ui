@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import {animate, AUTO_STYLE, state, style, transition, trigger} from '@angular/animations';
 import {MenuItems} from '../../shared/menu-items/menu-items';
+import { BASICENDPOINT } from '../../constants';
 
 @Component({
   selector: 'app-admin',
@@ -119,7 +121,7 @@ export class AdminComponent implements OnInit {
 
   public config: any;
 
-  constructor(public menuItems: MenuItems) {
+  constructor(private http: HttpClient,public menuItems: MenuItems) {
     this.navType = 'st2';
     this.themeLayout = 'vertical';
     this.verticalPlacement = 'left';
@@ -170,9 +172,21 @@ export class AdminComponent implements OnInit {
     this.setMenuAttributes(this.windowWidth);
     this.setHeaderAttributes(this.windowWidth);
   }
+  basicEndPoint = BASICENDPOINT;
+  orders = {
+    data:[]
+  };
 
   ngOnInit() {
     this.setBackgroundPattern('pattern1');
+
+    this.http.get(BASICENDPOINT + '/orders/status/pending').subscribe(data => {
+      var jsonData = JSON.parse(JSON.stringify(data));
+      this.orders.data = jsonData;
+
+      console.log(this.orders);
+    });
+
     /*document.querySelector('body').classList.remove('dark');*/
   }
 

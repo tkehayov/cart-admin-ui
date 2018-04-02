@@ -26,7 +26,6 @@ export class ViewProductComponent implements OnInit {
     this.http.get(BASICENDPOINT + '/products/' + this.queryParams).subscribe(data => {
       var jsonData = JSON.parse(JSON.stringify(data));
       this.products = jsonData;
-      console.log(this.products);
     });
   }
 }
