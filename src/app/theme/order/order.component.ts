@@ -1,5 +1,5 @@
 import { Component, OnInit, AfterViewInit, ElementRef, ViewChild, ViewEncapsulation } from '@angular/core';
-import { ActivatedRoute, RouterModule, Routes } from '@angular/router';
+import { ActivatedRoute, Router, RouterModule, Routes } from '@angular/router';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { BASICENDPOINT } from '../../constants';
@@ -19,7 +19,7 @@ export class OrderComponent implements OnInit {
   order = <any>{};
   products = [];
 
-  constructor(private http: HttpClient, private route: ActivatedRoute) {
+  constructor(private http: HttpClient, private route: ActivatedRoute, private router: Router) {
   }
 
   ngOnInit() {
@@ -49,6 +49,6 @@ export class OrderComponent implements OnInit {
   }
 
   goProductDetail(productId) {
-    console.log("welcome");
+      this.router.navigate(['products/view/' + productId]);
   }
 }

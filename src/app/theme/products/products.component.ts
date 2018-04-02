@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { RouterModule, Routes, Router } from '@angular/router';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { CustomValidators } from 'ng2-validation';
@@ -27,7 +27,7 @@ export class ProductsComponent implements OnInit {
   page = 0;
   Arr = Array;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private router: Router) { }
 
   ngOnInit() {
     this.http.get(BASICENDPOINT + '/products/?size=10&page=' + this.page).subscribe(data => {
@@ -85,5 +85,9 @@ export class ProductsComponent implements OnInit {
   gotoPage(page) {
     this.page = page;
     this.ngOnInit();
+  }
+
+  goProductDetail(productId) {
+      this.router.navigate(['products/view/' + productId]);
   }
 }
