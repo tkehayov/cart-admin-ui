@@ -46,9 +46,7 @@ export class AddProductComponent implements OnInit {
     theClass: 'small-icon'
   };
 
-//
   state: ITreeState;
-  namen = "";
   category = [];
 
   constructor(private http: HttpClient, private servicePNotify: NotificationsService) {
@@ -64,7 +62,8 @@ export class AddProductComponent implements OnInit {
   }
 
   selectCategory() {
-    this.productForm.value.categoryId=this.state.focusedNodeId;
+    this.productForm.value.categoryId = this.state.focusedNodeId;
+    console.log(this.state);
   }
 
   ngOnInit() {
@@ -78,10 +77,33 @@ export class AddProductComponent implements OnInit {
 
     if (this.productForm.status === "VALID") {
       this.http.post(BASICENDPOINT + '/products', this.productForm.value).subscribe(data => {
+        this.state.focusedNodeId = 0;
+        this.productForm.value.featureImage = "";
+        this.featureImageUrl = "";
+
+        this.gallery.filenames = [];
+        this.gallery.id = [];
+
+        this.productForm.setValue({
+          name: "",
+          description: "",
+          salePrice: 0
+        });
+
         this.servicePNotify.success(
           "Success",
           "Product added"
         );
+      }, Error => {
+        console.log(this.productForm.value);
+
+        // this.productForm.setValue({
+        //   name: "",
+        //   description: "",
+        //   salePrice: 0,
+        //   categoryId: ""
+        // });
+
       });
     }
   }

@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import {animate, AUTO_STYLE, state, style, transition, trigger} from '@angular/animations';
 import {MenuItems} from '../../shared/menu-items/menu-items';
 import { BASICENDPOINT } from '../../constants';
+import { IntervalObservable } from 'rxjs/observable/IntervalObservable';
 
 @Component({
   selector: 'app-admin',
@@ -180,12 +181,11 @@ export class AdminComponent implements OnInit {
   ngOnInit() {
     this.setBackgroundPattern('pattern1');
 
-    this.http.get(BASICENDPOINT + '/orders/status/pending').subscribe(data => {
+    IntervalObservable.create(3600000).subscribe(n => this.http.get(BASICENDPOINT + '/orders/status/pending').subscribe(data => {
       var jsonData = JSON.parse(JSON.stringify(data));
       this.orders.data = jsonData;
-
-      console.log(this.orders);
-    });
+    })
+  );
 
     /*document.querySelector('body').classList.remove('dark');*/
   }
