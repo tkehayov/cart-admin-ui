@@ -92,6 +92,6 @@ export class ProductsComponent implements OnInit {
   }
 
   goProductEdit(productId) {
-    console.log(productId);
+    this.router.navigate(['products/edit/' + productId]);
   }
 }

@@ -5,12 +5,13 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { BASICENDPOINT } from '../../../constants';
 import { transition, trigger, style, animate } from '@angular/animations';
 import { NotificationsService } from 'angular2-notifications';
+import { ActivatedRoute, RouterModule, Routes } from '@angular/router';
 
 @Component({
   selector: 'app-product',
-  templateUrl: './addproduct.component.html',
+  templateUrl: './editproduct.component.html',
   styleUrls: [
-    './addproduct.component.scss',
+    './editproduct.component.scss',
     './../../../../assets/icon/icofont/css/icofont.scss'
   ],
   animations: [
@@ -27,9 +28,10 @@ import { NotificationsService } from 'angular2-notifications';
   ]
 })
 
-export class AddProductComponent implements OnInit {
+export class EditProductComponent implements OnInit {
   basicEndPoint = BASICENDPOINT;
   images = [];
+  queryParams: { id: "" };
   productForm: FormGroup;
   submitted: boolean;
   results: string[];
@@ -45,14 +47,15 @@ export class AddProductComponent implements OnInit {
     timeOut: 1000,
     theClass: 'small-icon'
   };
-//
+
   state: ITreeState;
   category = [];
 
-  constructor(private http: HttpClient, private servicePNotify: NotificationsService) {
+  constructor(private http: HttpClient, private servicePNotify: NotificationsService, private route: ActivatedRoute) {
     const name = new FormControl('', Validators.required);
     const description = new FormControl('', Validators.required);
     const salePrice = new FormControl('', [Validators.required, CustomValidators.number]);
+
     this.productForm = new FormGroup({
       name: name,
       description: description,
@@ -67,34 +70,39 @@ export class AddProductComponent implements OnInit {
   ngOnInit() {
     this.listCategories();
     this.listImages();
+
+    this.route.params.subscribe(params => this.queryParams = params.id);
+
+    this.http.get(BASICENDPOINT + '/products/' + this.queryParams).subscribe(data => {
+      var products = JSON.parse(JSON.stringify(data));
+      this.featureImageUrl = products.featureImage;
+      this.gallery.filenames=products.gallery;
+      console.log(products);
+      this.productForm.setValue({
+        name: products.name,
+        description: products.description,
+        salePrice: products.salePrice
+      });
+    });
   }
+
 
   onSubmit() {
     this.servicePNotify.remove();
     this.submitted = true;
 
     if (this.productForm.status === "VALID") {
-      this.http.post(BASICENDPOINT + '/products', this.productForm.value).subscribe(data => {
-        this.state.focusedNodeId = 0;
-        this.productForm.value.featureImage = "";
-        this.featureImageUrl = "";
-
-        this.gallery.filenames = [];
-        this.gallery.id = [];
-
-        this.productForm.setValue({
-          name: "",
-          description: "",
-          salePrice: 0
-        });
-
-        this.servicePNotify.success(
-          "Success",
-          "Product added"
-        );
-      }, Error => {
-        console.log(this.productForm.value);
-      });
+      console.log("submitted");
+      // this.http.post(BASICENDPOINT + '/products', this.productForm.value).subscribe(data => {
+      //   this.state.focusedNodeId = 0;
+      //
+      //   this.servicePNotify.success(
+      //     "Success",
+      //     "Product edited"
+      //   );
+      // }, Error => {
+      //   console.log(this.productForm.value);
+      // });
     }
   }
 
@@ -115,7 +123,7 @@ export class AddProductComponent implements OnInit {
     this.featureImageUrl = filename;
     this.servicePNotify.success(
       "Success",
-      "Feature image added"
+      "Feature image edited"
     );
   }
 

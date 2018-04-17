@@ -19,7 +19,6 @@ export class BreadcrumbsComponent {
             url = '';
         do {
           const childrenRoutes = currentRoute.children;
-          console.log(currentRoute.children);
           currentRoute = null;
           childrenRoutes.forEach(routes => {
             if (routes.outlet === 'primary') {

@@ -1,0 +1,134 @@
+<simple-notifications [options]="options"></simple-notifications>
+<div class="row">
+
+  <div class="col-sm-12">
+    <!-- Edit  product -->
+    <app-card [title]="'Product information'" [cardOptionBlock]="true">
+      <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
+        <div class="form-group row">
+          <label class="col-sm-2 col-form-label">Name</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" id="name" formControlName="name">
+            <div class="messages text-danger" *ngIf="productForm.controls.name.errors?.required">Name can't be blank</div>
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <label class="col-sm-2 col-form-label">Sale Price</label>
+          <div class="col-sm-2">
+            <input type="text" class="form-control" id="salePrice" formControlName="salePrice">
+            <div class="messages text-danger" *ngIf="productForm.controls.salePrice.errors?.required">Price can't be blank</div>
+            <div class="messages text-danger" *ngIf="productForm.controls.salePrice.errors?.number">Price should be numeric</div>
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <label class="col-sm-2 col-form-label">Description</label>
+          <div class="col-sm-10">
+            <textarea rows="5" cols="5" class="form-control" id="description" formControlName="description"></textarea>
+            <div class="messages text-danger" *ngIf="productForm.controls.description.errors?.required">Description can't be blank</div>
+          </div>
+        </div>
+
+        <div class="form-group row category">
+          <label class="col-sm-2 col-form-label">Category</label>
+          <div class="col-sm-10">
+            <tree-root [(state)]="state" [nodes]="category" [options]="options" (click)="selectCategory()"></tree-root>
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <label class="col-sm-2 col-form-label">Images</label>
+          <div class="col-sm-2">
+            <button type="button" class="btn btn-warning waves-effect" (click)="modalTabs.show()"><i class="icofont icofont-image"></i>Gallery</button>
+            <app-modal-basic #modalTabs [hideHeader]="true" [hideFooter]="true">
+              <div class="app-modal-body">
+                <button type="button" class="close basic-close" (click)="modalTabs.hide()">
+              <span aria-hidden="true">&times;</span>
+            </button>
+                <ngb-tabset>
+                  <ngb-tab title="Featured image">
+                    <ng-template ngbTabContent>
+                      <div [@fadeInOutTranslate] class="m-t-15">
+                        <div class="m-4">
+                          <div class="row users-card">
+                            <div class="col-lg-4 col-xl-4 col-md-4" *ngFor="let image of images">
+                              <div class="card rounded-card user-card">
+                                <div class="img-hover">
+                                  <img class="img-fluid" src="{{basicEndPoint}}/gallery/image/{{image.filename}}" />
+                                  <div class="img-overlay img-radius">
+                                    <span>
+                  <a href="javascript:" class="btn btn-sm btn-primary" data-popup="lightbox" (click)="addproductFeatureImage(image.id,image.filename)"><i class="icofont icofont-check"></i></a>
+                  </span>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </ng-template>
+                  </ngb-tab>
+
+                  <ngb-tab title="Gallery">
+                    <ng-template ngbTabContent>
+                      <div [@fadeInOutTranslate] class="m-t-15">
+                        <div class="m-4">
+                          <div class="row users-card">
+                            <div class="col-lg-4 col-xl-4 col-md-4" *ngFor="let image of images">
+                              <div class="card rounded-card user-card">
+                                <div class="img-hover">
+                                  <img class="img-fluid" src="{{basicEndPoint}}/gallery/image/{{image.filename}}" />
+                                  <div class="img-overlay img-radius">
+                                    <span>
+                  <a href="javascript:" class="btn btn-sm btn-primary" data-popup="lightbox" (click)="addproductGalleryImage(image.id,image.filename)"><i class="icofont icofont-check"></i></a>
+                  </span>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </ng-template>
+                  </ngb-tab>
+                </ngb-tabset>
+              </div>
+            </app-modal-basic>
+          </div>
+        </div>
+
+        <div *ngIf="featureImageUrl!=''" class="form-group row">
+          <label class="col-sm-2 col-form-label">Feature Image</label>
+          <div class="col-lg-4 col-md-12">
+            <div class="popular-img-block">
+              <img class="img-fluid" src="{{basicEndPoint}}/gallery/image/{{featureImageUrl}}" />
+            </div>
+          </div>
+
+          <div class="col-sm-10">
+
+
+          </div>
+        </div>
+
+        <div *ngIf="gallery.filenames.length!=0" class="form-group row">
+          <label class="col-sm-2 col-form-label">Gallery</label>
+          <div class="col-lg-4 col-md-12">
+            <div class="popular-img-block">
+              <img *ngFor="let image of gallery.filenames" class="img-fluid" src="{{basicEndPoint}}/gallery/image/{{image}}" />
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <label class="col-sm-2"></label>
+          <div class="col-sm-10">
+            <button type="submit" class="btn btn-primary m-b-0" [disabled]="!productForm.valid"><i class="icofont icofont-ui-add"></i>Edit product</button>
+          </div>
+        </div>
+      </form>
+    </app-card>
+    <!-- Edit product end -->
+  </div>
+</div>
