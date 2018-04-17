@@ -7,7 +7,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import {SimpleNotificationsModule} from 'angular2-notifications';
 import { TreeModule } from 'angular-tree-component';
-// @import ;
+
 
 @NgModule({
   imports: [
@@ -15,9 +15,9 @@ import { TreeModule } from 'angular-tree-component';
     AddProductRoutingModule,
     SharedModule,
     FormsModule,
-    TreeModule,
     ReactiveFormsModule,
     HttpClientModule,
+    TreeModule,
     SimpleNotificationsModule.forRoot()
   ],
   declarations: [AddProductComponent],

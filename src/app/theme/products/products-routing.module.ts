@@ -11,7 +11,13 @@ const routes: Routes = [
       icon: 'icon-receipt',
       caption: '',
       status: true
-    }
+    },
+    children: [
+      {
+        path: 'view',
+        loadChildren: './view/viewproduct.module#ViewProductModule'
+      }
+    ]
   }
 ];
 
@@ -20,8 +26,3 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class ProductsRoutingModule { }
-
-// {s
-//   path: 'products',
-//   loadChildren: './products/products.module#ProductsModule'
-// },

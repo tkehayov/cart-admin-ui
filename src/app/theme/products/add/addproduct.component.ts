@@ -46,13 +46,14 @@ export class AddProductComponent implements OnInit {
     theClass: 'small-icon'
   };
 
-  state: ITreeState;
+  state: any;
   category = [];
 
   constructor(private http: HttpClient, private servicePNotify: NotificationsService) {
     const name = new FormControl('', Validators.required);
     const description = new FormControl('', Validators.required);
     const salePrice = new FormControl('', [Validators.required, CustomValidators.number]);
+    this.state = ITreeState;
 
     this.productForm = new FormGroup({
       name: name,
@@ -63,7 +64,6 @@ export class AddProductComponent implements OnInit {
 
   selectCategory() {
     this.productForm.value.categoryId = this.state.focusedNodeId;
-    console.log(this.state);
   }
 
   ngOnInit() {

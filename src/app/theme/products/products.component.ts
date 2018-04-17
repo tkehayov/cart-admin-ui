@@ -88,6 +88,10 @@ export class ProductsComponent implements OnInit {
   }
 
   goProductDetail(productId) {
-      this.router.navigate(['products/view/' + productId]);
+    this.router.navigate(['products/view/' + productId]);
+  }
+
+  goProductEdit(productId) {
+    console.log(productId);
   }
 }
