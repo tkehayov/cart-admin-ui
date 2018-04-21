@@ -181,12 +181,12 @@ export class AdminComponent implements OnInit {
   ngOnInit() {
     this.setBackgroundPattern('pattern1');
     this.http.get(BASICENDPOINT + '/orders/status/pending').subscribe(data => {
-      var jsonData = JSON.parse(JSON.stringify(data));
+      var jsonData = JSON.parse(JSON.stringify(data.orders));
       this.orders.data = jsonData;
     })
-    
+
     IntervalObservable.create(3600000).subscribe(n => this.http.get(BASICENDPOINT + '/orders/status/pending').subscribe(data => {
-      var jsonData = JSON.parse(JSON.stringify(data));
+      var jsonData = JSON.parse(JSON.stringify(data.orders));
       this.orders.data = jsonData;
     })
   );

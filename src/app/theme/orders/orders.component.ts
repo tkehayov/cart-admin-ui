@@ -3,7 +3,7 @@ import { RouterModule, Routes, Router } from '@angular/router';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { BASICENDPOINT } from '../../constants';
-
+import { Observable } from 'rxjs/Observable';
 import { NotificationsService } from 'angular2-notifications';
 @Component({
   selector: 'app-orders',
@@ -16,20 +16,32 @@ import { NotificationsService } from 'angular2-notifications';
 })
 
 export class OrdersComponent implements OnInit {
-  orders = {
-    data: []
+  public orders = {
+    data: [],
+    totalPages: 0
   };
+  public pageSize = 10;
+  public maxSize = 5;
+  public page = 1;
   constructor(private router: Router, private http: HttpClient) { }
 
   ngOnInit() {
-    this.http.get(BASICENDPOINT + '/orders').subscribe(data => {
-      var jsonData = JSON.parse(JSON.stringify(data));
+    this.http.get(BASICENDPOINT + '/orders/?size=' + this.pageSize + '&page=' + (this.page - 1)).subscribe(data => {
+      var jsonData = JSON.parse(JSON.stringify(data.orders));
+      this.orders.totalPages = data.pageSize * 10;
+      this.orders.data = jsonData;
+    });
+  }
+
+  loadPage($event) {
+    this.http.get(BASICENDPOINT + '/orders/?size=' + this.pageSize + '&page=' + (this.page - 1)).subscribe(data => {
+      var jsonData = JSON.parse(JSON.stringify(data.orders));
       this.orders.data = jsonData;
     });
   }
 
   goDetail(id) {
-    this.router.navigate(['order/'+id]);
+    this.router.navigate(['order/' + id]);
   }
 
   updateStatus(order, status) {

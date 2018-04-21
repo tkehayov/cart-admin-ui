@@ -35,7 +35,7 @@
         </table>
 
         <div class="text-center" style="margin-top:60px;">
-          <button class="btn btn-outline-primary btn-round btn-sm">Load More</button>
+          <ngb-pagination [collectionSize]="orders.totalPages" [maxSize]="maxSize" size="sm" [(page)]="page" [boundaryLinks]="true" (pageChange)="loadPage($event)"></ngb-pagination>
         </div>
       </div>
     </app-card>
