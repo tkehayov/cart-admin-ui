@@ -24,16 +24,19 @@ export class ProductsComponent implements OnInit {
 
   showDialog = false;
   public config: any;
-  page = 0;
+  public pageSize = 10;
+  public maxSize = 5;
+  public page = 1;
   Arr = Array;
 
   constructor(private http: HttpClient, private router: Router) { }
 
   ngOnInit() {
-    this.http.get(BASICENDPOINT + '/products/?size=10&page=' + this.page).subscribe(data => {
-      var jsonData = JSON.parse(JSON.stringify(data));
-      this.products.data = jsonData.productList;
-      this.products.totalPages = jsonData.totalPages;
+    this.http.get(BASICENDPOINT + '/products/?size=' + this.pageSize + '&page=' + (this.page - 1)).subscribe(data => {
+      var jsonData = JSON.parse(JSON.stringify(data.productList));
+      console.log(data);
+      this.products.totalPages = data.totalPages * 10;
+      this.products.data = jsonData;
     });
   }
 
@@ -72,21 +75,14 @@ export class ProductsComponent implements OnInit {
 
   }
 
-  nextPage(page: any): void {
-    this.page++;
-    this.ngOnInit();
+  loadPage($event) {
+    this.http.get(BASICENDPOINT + '/products/?size=' + this.pageSize + '&page=' + (this.page - 1)).subscribe(data => {
+      var jsonData = JSON.parse(JSON.stringify(data.productList));
+      this.products.totalPages = data.totalPages * 10;
+      this.products.data = jsonData;
+    });
   }
-
-  prevPage(page: any): void {
-    this.page--;
-    this.ngOnInit();
-  }
-
-  gotoPage(page) {
-    this.page = page;
-    this.ngOnInit();
-  }
-
+  
   goProductDetail(productId) {
     this.router.navigate(['products/view/' + productId]);
   }

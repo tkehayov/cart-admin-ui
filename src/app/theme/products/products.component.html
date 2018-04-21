@@ -9,7 +9,7 @@
 <div class="row">
   <div class="col-sm-12">
     <app-card [title]="'List products'">
-      <ngx-datatable class="data-table" [rows]="products.data" [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50" [rowHeight]="'auto'">
+      <ngx-datatable class="data-table" [rows]="products.data" [columnMode]="'force'" [headerHeight]="50" [rowHeight]="'auto'">
 
         <ngx-datatable-column name="Name"></ngx-datatable-column>
         <ngx-datatable-column name="Description"></ngx-datatable-column>
@@ -20,29 +20,9 @@
             <button class="btn btn-danger btn-mini btn-outline-danger" (click)="delete(row.id)"><i class="icofont icofont-trash"></i>Delete</button>
           </ng-template>
         </ngx-datatable-column>
-
-        <ngx-datatable-footer>
-          <ng-template ngx-datatable-footer-template>
-            <div>
-              <nav aria-label="...">
-                <ul class="pagination">
-                  <li [ngClass]="page==0? 'page-item disabled':'page-item'">
-                    <button class="page-link" (click)="prevPage(page)" tabindex="-1">Previous</button>
-                  </li>
-
-                  <li *ngFor="let index of Arr(products.totalPages).fill(1), let page = index" class="page-item">
-                    <button class="page-link" (click)="gotoPage(page)">{{page}}</button>
-                  </li>
-
-                  <li [ngClass]="page==products.totalPages-1? 'page-item disabled':'page-item'">
-                    <button class="page-link" (click)="nextPage(page)">Next</button>
-                  </li>
-                </ul>
-              </nav>
-            </div>
-          </ng-template>
-        </ngx-datatable-footer>
       </ngx-datatable>
+      <ngb-pagination [collectionSize]="products.totalPages" [maxSize]="maxSize" size="sm" [(page)]="page" [boundaryLinks]="true" (pageChange)="loadPage($event)"></ngb-pagination>
+
     </app-card>
   </div>
 </div>

@@ -3,7 +3,6 @@ import { RouterModule, Routes, Router } from '@angular/router';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { BASICENDPOINT } from '../../constants';
-import { Observable } from 'rxjs/Observable';
 import { NotificationsService } from 'angular2-notifications';
 @Component({
   selector: 'app-orders',
