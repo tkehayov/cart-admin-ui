@@ -56,7 +56,6 @@ export class ViewProductComponent implements OnInit {
             'Product has been deleted.',
             'success'
           )
-
           this.router.navigate(['products']);
         });
       } else if (result.dismiss === 'cancel') {
