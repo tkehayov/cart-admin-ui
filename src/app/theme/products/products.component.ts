@@ -64,7 +64,7 @@ export class ProductsComponent implements OnInit {
       } else if (result.dismiss === 'cancel') {
         swal(
           'Cancelled',
-          'Product is not deleted',
+          'Product not deleted',
           'error'
         )
       }
