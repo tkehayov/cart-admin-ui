@@ -102,7 +102,7 @@
           <label class="col-sm-2 col-form-label">Feature Image</label>
           <div class="col-lg-4 col-md-12">
             <div class="popular-img-block">
-              <a href="javascript:" (click)="deleteProductFeatureImage()"><img class="img-fluid" src="{{basicEndPoint}}/gallery/image/{{featureImageUrl}}" /></a>
+              <a href="javascript:" (click)="deleteProductFeatureImage()"><img class="img-fluid waves-effect" ngbTooltip="remove image" src="{{basicEndPoint}}/gallery/image/{{featureImageUrl}}" /></a>
             </div>
           </div>
         </div>
@@ -110,8 +110,7 @@
           <label class="col-sm-2 col-form-label">Gallery</label>
           <div class="col-lg-4 col-md-12">
             <div class="popular-img-block">
-               <!-- href="javascript:" class="btn btn-sm btn-primary" data-popup="lightbox" (click)="addproductFeatureImage(image.id,image.filename)"><i class="icofont icofont-check"></i> -->
-              <img *ngFor="let image of gallery.filenames" class="img-fluid" src="{{basicEndPoint}}/gallery/image/{{image}}" />
+              <a *ngFor="let image of gallery.filenames" href="javascript:" (click)="deleteProductGallery(image)"><img class="img-fluid waves-effect" ngbTooltip="remove image" src="{{basicEndPoint}}/gallery/image/{{image}}" /></a>
             </div>
           </div>
         </div>

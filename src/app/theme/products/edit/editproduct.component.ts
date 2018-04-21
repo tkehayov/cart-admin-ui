@@ -142,6 +142,17 @@ export class EditProductComponent implements OnInit {
     );
   }
 
+  deleteProductGallery(image) {
+    var currentImageIndex = this.gallery.filenames.indexOf(image);
+
+    if (currentImageIndex > -1) {
+      this.gallery.filenames.splice(currentImageIndex, 1);
+    }
+
+    console.log(this.gallery.filenames);
+    
+  }
+
   deleteProductFeatureImage() {
     this.featureImageUrl = "";
   }
