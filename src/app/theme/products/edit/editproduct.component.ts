@@ -76,7 +76,7 @@ export class EditProductComponent implements OnInit {
     this.http.get(BASICENDPOINT + '/products/' + this.queryParams).subscribe(data => {
       var products = JSON.parse(JSON.stringify(data));
       this.featureImageUrl = products.featureImage;
-      this.gallery.filenames=products.gallery;
+      this.gallery.filenames = products.gallery;
       console.log(products);
       this.productForm.setValue({
         name: products.name,
@@ -86,23 +86,27 @@ export class EditProductComponent implements OnInit {
     });
   }
 
-
   onSubmit() {
     this.servicePNotify.remove();
     this.submitted = true;
 
     if (this.productForm.status === "VALID") {
-      console.log("submitted");
-      // this.http.post(BASICENDPOINT + '/products', this.productForm.value).subscribe(data => {
-      //   this.state.focusedNodeId = 0;
-      //
-      //   this.servicePNotify.success(
-      //     "Success",
-      //     "Product edited"
-      //   );
-      // }, Error => {
-      //   console.log(this.productForm.value);
-      // });
+      this.productForm.value.id = this.queryParams;
+
+      this.productForm.value.featureImage = this.featureImageUrl;
+      this.productForm.value.gallery = this.gallery.filenames;
+
+      console.log(this.productForm.value);
+      this.http.put(BASICENDPOINT + '/products', this.productForm.value).subscribe(data => {
+        this.state.focusedNodeId = 0;
+
+        this.servicePNotify.success(
+          "Success",
+          "Product edited"
+        );
+      }, Error => {
+        console.log(this.productForm.value);
+      });
     }
   }
 
@@ -136,5 +140,9 @@ export class EditProductComponent implements OnInit {
       "Success",
       "Image added to gallery"
     );
+  }
+
+  deleteProductFeatureImage() {
+    this.featureImageUrl = "";
   }
 }

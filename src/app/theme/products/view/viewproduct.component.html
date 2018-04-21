@@ -5,7 +5,10 @@
     <app-card [title]="'Product information'" [cardOptionBlock]="true">
       <form>
         <div class="form-group row">
-          <label class="col-sm-2 col-form-label">Name</label> {{products.name}}
+          <label class="col-sm-2 col-form-label">Name</label>
+          <div class="col-sm-2">
+            {{products.name}}
+          </div>
         </div>
 
         <div class="form-group row">
@@ -41,8 +44,8 @@
         <div class="form-group row">
           <label class="col-sm-2 col-form-label">Gallery</label>
           <div class="col-lg-4 col-md-12">
-            <div class="popular-img-block" *ngFor="let image of products.gallery">
-              <img class="img-fluid" src="{{basicEndPoint}}/gallery/image/{{image}}" />
+            <div class="popular-img-block">
+              <img *ngFor="let image of products.gallery" class="img-fluid" src="{{basicEndPoint}}/gallery/image/{{image}}" />
             </div>
           </div>
         </div>

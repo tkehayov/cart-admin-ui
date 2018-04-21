@@ -102,20 +102,15 @@
           <label class="col-sm-2 col-form-label">Feature Image</label>
           <div class="col-lg-4 col-md-12">
             <div class="popular-img-block">
-              <img class="img-fluid" src="{{basicEndPoint}}/gallery/image/{{featureImageUrl}}" />
+              <a href="javascript:" (click)="deleteProductFeatureImage()"><img class="img-fluid" src="{{basicEndPoint}}/gallery/image/{{featureImageUrl}}" /></a>
             </div>
           </div>
-
-          <div class="col-sm-10">
-
-
-          </div>
         </div>
-
         <div *ngIf="gallery.filenames.length!=0" class="form-group row">
           <label class="col-sm-2 col-form-label">Gallery</label>
           <div class="col-lg-4 col-md-12">
             <div class="popular-img-block">
+               <!-- href="javascript:" class="btn btn-sm btn-primary" data-popup="lightbox" (click)="addproductFeatureImage(image.id,image.filename)"><i class="icofont icofont-check"></i> -->
               <img *ngFor="let image of gallery.filenames" class="img-fluid" src="{{basicEndPoint}}/gallery/image/{{image}}" />
             </div>
           </div>
@@ -124,7 +119,7 @@
         <div class="form-group row">
           <label class="col-sm-2"></label>
           <div class="col-sm-10">
-            <button type="submit" class="btn btn-primary m-b-0" [disabled]="!productForm.valid"><i class="icofont icofont-ui-add"></i>Edit product</button>
+            <button type="submit" class="btn btn-sm btn-primary m-b-0" [disabled]="!productForm.valid"><i class="icofont icofont-ui-add"></i>Edit product</button>
           </div>
         </div>
       </form>
