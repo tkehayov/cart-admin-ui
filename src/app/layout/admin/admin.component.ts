@@ -185,7 +185,7 @@ export class AdminComponent implements OnInit {
       this.orders.data = jsonData;
     })
 
-    IntervalObservable.create(3600000).subscribe(n => this.http.get(BASICENDPOINT + '/orders/status/pending').subscribe(data => {
+    IntervalObservable.create(3600000).subscribe(n => this.http.get(BASICENDPOINT + '/orders/status/pending/?size=10&page=1').subscribe(data => {
       var jsonData = JSON.parse(JSON.stringify(data.orders));
       this.orders.data = jsonData;
     })
