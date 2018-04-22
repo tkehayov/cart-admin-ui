@@ -40,7 +40,7 @@
         <div class="form-group row">
           <label class="col-sm-2 col-form-label">Images</label>
           <div class="col-sm-2">
-            <button type="button" class="btn btn-warning waves-effect" (click)="modalTabs.show()"><i class="icofont icofont-image"></i>Gallery</button>
+            <button type="button" class="btn btn-sm btn-warning waves-effect" (click)="modalTabs.show()"><i class="icofont icofont-image"></i>Gallery</button>
             <app-modal-basic #modalTabs [hideHeader]="true" [hideFooter]="true">
               <div class="app-modal-body">
                 <button type="button" class="close basic-close" (click)="modalTabs.hide()">
@@ -124,7 +124,7 @@
         <div class="form-group row">
           <label class="col-sm-2"></label>
           <div class="col-sm-10">
-            <button type="submit" class="btn btn-primary m-b-0" [disabled]="!productForm.valid"><i class="icofont icofont-ui-add"></i>Add product</button>
+            <button type="submit" class="btn btn-sm btn-primary m-b-0" [disabled]="!productForm.valid"><i class="icofont icofont-ui-add"></i>Add product</button>
           </div>
         </div>
       </form>
