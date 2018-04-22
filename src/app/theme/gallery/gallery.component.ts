@@ -17,7 +17,15 @@ import { NotificationsService } from 'angular2-notifications';
 
 export class GalleryComponent implements OnInit {
   basicEndPoint = BASICENDPOINT;
-  images = [];
+  public pageSize = 10;
+  public maxSize = 5;
+  public page = 1;
+  public images = {
+    data: [],
+    pageSize: 0
+  };
+
+  // images = [];
   imageSizes = [{
     key: "front image - width 300",
     value: 300
@@ -50,8 +58,10 @@ export class GalleryComponent implements OnInit {
   }
 
   listImages() {
-    this.http.get(BASICENDPOINT + '/gallery/imagelist').subscribe(data => {
-      this.images = JSON.parse(JSON.stringify(data));
+    this.http.get(BASICENDPOINT + '/gallery/imagelist?size=' + this.pageSize + '&page=' + (this.page - 1)).subscribe(data => {
+      var jsonData = JSON.parse(JSON.stringify(data.gallery));
+      this.images.pageSize = data.pageSize * 10;
+      this.images.data = jsonData;
     });
   }
 
@@ -95,5 +105,13 @@ export class GalleryComponent implements OnInit {
 
     var blob = new Blob([ab], { type: mimeString });
     return blob;
+  }
+
+  loadPage($event) {
+    this.http.get(BASICENDPOINT + '/gallery/imagelist?size=' + this.pageSize + '&page=' + (this.page - 1)).subscribe(data => {
+      var jsonData = JSON.parse(JSON.stringify(data.gallery));
+      this.images.pageSize = data.pageSize * 10;
+      this.images.data = jsonData;
+    });
   }
 }

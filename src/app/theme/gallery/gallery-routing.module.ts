@@ -9,7 +9,7 @@ const routes: Routes = [
     data: {
       title: 'Gallery',
       icon: 'icon-receipt',
-      caption: 'lorem ipsum dolor sit amet, consectetur adipisicing elit - basic table',
+      caption: '',
       status: true
     }
   }

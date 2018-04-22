@@ -28,10 +28,10 @@
     <app-card [title]="'Image list'">
       <div class="card-block">
         <div class="popular-img-block">
-          <img class="img-fluid" *ngFor="let image of images" src="{{basicEndPoint}}/gallery/image/{{image.filename}}" />
+          <img class="img-fluid" *ngFor="let image of images.data" src="{{basicEndPoint}}/gallery/image/{{image.filename}}" />
         </div>
         <div class="text-center m-t-15">
-          <button class="btn btn-outline-primary btn-round btn-sm">Load More</button>
+          <ngb-pagination [collectionSize]="images.pageSize" [maxSize]="maxSize" size="sm" [(page)]="page" [boundaryLinks]="true" (pageChange)="loadPage($event)"></ngb-pagination>
         </div>
       </div>
     </app-card>
