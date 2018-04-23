@@ -37,7 +37,7 @@ export class ProductsComponent implements OnInit {
     this.searchService.search(this.searchTerm$)
       .subscribe(results => {
         var jsonData = JSON.parse(JSON.stringify(results.productList));
-        console.log(results);
+
         this.products.totalPages = results.totalPages * 10;
         this.products.data = jsonData;
       });
@@ -46,7 +46,6 @@ export class ProductsComponent implements OnInit {
   ngOnInit() {
     this.http.get(BASICENDPOINT + '/products/?size=' + this.pageSize + '&page=' + (this.page - 1)).subscribe(data => {
       var jsonData = JSON.parse(JSON.stringify(data.productList));
-      console.log(data);
       this.products.totalPages = data.totalPages * 10;
       this.products.data = jsonData;
     });

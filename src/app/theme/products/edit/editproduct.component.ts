@@ -77,7 +77,6 @@ export class EditProductComponent implements OnInit {
       var products = JSON.parse(JSON.stringify(data));
       this.featureImageUrl = products.featureImage;
       this.gallery.filenames = products.gallery;
-      console.log(products);
       this.productForm.setValue({
         name: products.name,
         description: products.description,
@@ -150,7 +149,7 @@ export class EditProductComponent implements OnInit {
     }
 
     console.log(this.gallery.filenames);
-    
+
   }
 
   deleteProductFeatureImage() {
