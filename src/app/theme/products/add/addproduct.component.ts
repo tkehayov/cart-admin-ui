@@ -106,7 +106,7 @@ export class AddProductComponent implements OnInit {
 
   listImages() {
     this.http.get(BASICENDPOINT + '/gallery/imagelist').subscribe(data => {
-      this.images = JSON.parse(JSON.stringify(data));
+      this.images = JSON.parse(JSON.stringify(data.gallery));
     });
   }
 

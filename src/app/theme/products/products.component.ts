@@ -6,10 +6,13 @@ import { CustomValidators } from 'ng2-validation';
 import { BASICENDPOINT } from '../../constants';
 import { transition, trigger, style, animate } from '@angular/animations';
 import swal from 'sweetalert2';
+import { Subject } from 'rxjs/Subject';
+import { SearchService } from '../../shared/search.service';
 
 @Component({
   selector: 'app-products',
   templateUrl: './products.component.html',
+
   styleUrls: [
     './products.component.scss',
     './../../../assets/icon/icofont/css/icofont.scss',
@@ -21,6 +24,7 @@ export class ProductsComponent implements OnInit {
     data: [],
     totalPages: 0
   };
+  searchTerm$ = new Subject<string>();
 
   showDialog = false;
   public config: any;
@@ -29,7 +33,15 @@ export class ProductsComponent implements OnInit {
   public page = 1;
   Arr = Array;
 
-  constructor(private http: HttpClient, private router: Router) { }
+  constructor(private http: HttpClient, private router: Router, private searchService: SearchService) {
+    this.searchService.search(this.searchTerm$)
+      .subscribe(results => {
+        var jsonData = JSON.parse(JSON.stringify(results.productList));
+        console.log(results);
+        this.products.totalPages = results.totalPages * 10;
+        this.products.data = jsonData;
+      });
+  }
 
   ngOnInit() {
     this.http.get(BASICENDPOINT + '/products/?size=' + this.pageSize + '&page=' + (this.page - 1)).subscribe(data => {
@@ -82,7 +94,7 @@ export class ProductsComponent implements OnInit {
       this.products.data = jsonData;
     });
   }
-  
+
   goProductDetail(productId) {
     this.router.navigate(['products/view/' + productId]);
   }

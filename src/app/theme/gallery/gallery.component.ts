@@ -59,7 +59,7 @@ export class GalleryComponent implements OnInit {
 
   listImages() {
     this.http.get(BASICENDPOINT + '/gallery/imagelist?size=' + this.pageSize + '&page=' + (this.page - 1)).subscribe(data => {
-      var jsonData = JSON.parse(JSON.stringify(data.gallery));
+      var jsonData = JSON.parse(JSON.stringify(this.data.gallery));
       this.images.pageSize = data.pageSize * 10;
       this.images.data = jsonData;
     });
