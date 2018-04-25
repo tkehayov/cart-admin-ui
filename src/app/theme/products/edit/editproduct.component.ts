@@ -95,7 +95,6 @@ export class EditProductComponent implements OnInit {
       this.productForm.value.featureImage = this.featureImageUrl;
       this.productForm.value.gallery = this.gallery.filenames;
 
-      console.log(this.productForm.value);
       this.http.put(BASICENDPOINT + '/products', this.productForm.value).subscribe(data => {
         this.state.focusedNodeId = 0;
 
@@ -117,7 +116,8 @@ export class EditProductComponent implements OnInit {
 
   listImages() {
     this.http.get(BASICENDPOINT + '/gallery/imagelist').subscribe(data => {
-      this.images = JSON.parse(JSON.stringify(data));
+      var jsonData = JSON.parse(JSON.stringify(data));
+      this.images = jsonData.gallery;
     });
   }
 
@@ -147,9 +147,6 @@ export class EditProductComponent implements OnInit {
     if (currentImageIndex > -1) {
       this.gallery.filenames.splice(currentImageIndex, 1);
     }
-
-    console.log(this.gallery.filenames);
-
   }
 
   deleteProductFeatureImage() {
