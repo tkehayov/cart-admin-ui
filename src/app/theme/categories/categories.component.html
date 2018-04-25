@@ -1,12 +1,11 @@
-<!-- <simple-notifications [options]="options"></simple-notifications> -->
+<simple-notifications [options]="options"></simple-notifications>
 <div class="row">
   <div class="col-sm-12">
-    <app-card [title]="'Categories'" [classHeader]="true" >
-      <!-- tabs card start -->
+    <app-card [title]="'Categories'" [classHeader]="true">
       <div class="col-sm-12">
-        <table class="table data-table fullscreen">
-          
-        </table>
+        <div class="col-sm-10">
+          <tree-root [(state)]="state" [nodes]="category" [options]="options" (click)="selectCategory()"></tree-root>
+        </div>
       </div>
     </app-card>
   </div>

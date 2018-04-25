@@ -10,19 +10,35 @@ import { NotificationsService } from 'angular2-notifications';
   styleUrls: [
     './categories.component.scss',
     './../../../assets/icon/icofont/css/icofont.scss',
-    '../../../../node_modules/sweetalert2/src/sweetalert2.scss']
-
+    '../../../../node_modules/sweetalert2/src/sweetalert2.scss'],
 })
 
 export class CategoriesComponent implements OnInit {
-  constructor(private router: Router, private http: HttpClient) { }
+  productForm: FormGroup;
+  options: any = {
+    position: ['bottom', 'right'],
+    timeOut: 1000,
+    theClass: 'small-icon'
+  };
+
+  state: ITreeState;
+  category = [];
+
+  constructor(private router: Router, private http: HttpClient) {
+    this.productForm = new FormGroup({});
+  }
 
   ngOnInit() {
-    // this.http.get(BASICENDPOINT + '/Categories/?size=' + this.pageSize + '&page=' + (this.page - 1)).subscribe(data => {
-    //   var jsonData = JSON.parse(JSON.stringify(data));
-    //   console.log("maliii",jsonData.pageSize);
-    //   this.Categories.totalPages = jsonData.pageSize * 10;
-    //   this.Categories.data = jsonData.Categories;
-    // });
+    this.listCategories();
+  }
+
+  selectCategory() {
+    this.productForm.value.categoryId = this.state.focusedNodeId;
+  }
+
+  listCategories() {
+    this.http.get(BASICENDPOINT + '/categories').subscribe(data => {
+      this.category = JSON.parse(JSON.stringify(data));
+    });
   }
 }
