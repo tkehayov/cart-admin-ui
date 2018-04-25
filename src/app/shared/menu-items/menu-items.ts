@@ -47,6 +47,12 @@ const MENUITEMS = [
         ]
       },
       {
+        state: 'categories',
+        name: 'Categories',
+        type: 'link',
+        icon: 'icon-layout-grid3-alt'
+      },
+      {
         state: 'gallery',
         name: 'Gallery',
         type: 'link',

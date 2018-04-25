@@ -40,6 +40,10 @@ const routes: Routes = [
       {
         path: 'order/:id',
         loadChildren: './theme/order/order.module#OrderModule'
+      },
+      {
+        path: 'categories',
+        loadChildren: './theme/categories/categories.module#CategoriesModule'
       }
     ]
   }
