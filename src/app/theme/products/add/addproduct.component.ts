@@ -45,7 +45,7 @@ export class AddProductComponent implements OnInit {
     timeOut: 1000,
     theClass: 'small-icon'
   };
-//
+
   state: ITreeState;
   category = [];
 
@@ -106,7 +106,8 @@ export class AddProductComponent implements OnInit {
 
   listImages() {
     this.http.get(BASICENDPOINT + '/gallery/imagelist').subscribe(data => {
-      this.images = JSON.parse(JSON.stringify(data.gallery));
+      var parsedJson = JSON.parse(JSON.stringify(data));
+      this.images = parsedJson.gallery;
     });
   }
 

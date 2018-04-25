@@ -45,9 +45,9 @@ export class ProductsComponent implements OnInit {
 
   ngOnInit() {
     this.http.get(BASICENDPOINT + '/products/?size=' + this.pageSize + '&page=' + (this.page - 1)).subscribe(data => {
-      var jsonData = JSON.parse(JSON.stringify(data.productList));
-      this.products.totalPages = data.totalPages * 10;
-      this.products.data = jsonData;
+      var jsonData = JSON.parse(JSON.stringify(data));
+      this.products.totalPages = jsonData.totalPages * 10;
+      this.products.data = jsonData.productList;
     });
   }
 
@@ -88,9 +88,9 @@ export class ProductsComponent implements OnInit {
 
   loadPage($event) {
     this.http.get(BASICENDPOINT + '/products/?size=' + this.pageSize + '&page=' + (this.page - 1)).subscribe(data => {
-      var jsonData = JSON.parse(JSON.stringify(data.productList));
-      this.products.totalPages = data.totalPages * 10;
-      this.products.data = jsonData;
+      var jsonData = JSON.parse(JSON.stringify(data));
+      this.products.totalPages = jsonData.totalPages * 10;
+      this.products.data = jsonData.productList;
     });
   }
 

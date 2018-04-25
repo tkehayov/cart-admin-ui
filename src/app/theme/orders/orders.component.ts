@@ -26,16 +26,16 @@ export class OrdersComponent implements OnInit {
 
   ngOnInit() {
     this.http.get(BASICENDPOINT + '/orders/?size=' + this.pageSize + '&page=' + (this.page - 1)).subscribe(data => {
-      var jsonData = JSON.parse(JSON.stringify(data.orders));
-      this.orders.totalPages = data.pageSize * 10;
-      this.orders.data = jsonData;
+      var jsonData = JSON.parse(JSON.stringify(data));
+      this.orders.totalPages = jsonData.orders.pageSize * 10;
+      this.orders.data = jsonData.orders;
     });
   }
 
   loadPage($event) {
     this.http.get(BASICENDPOINT + '/orders/?size=' + this.pageSize + '&page=' + (this.page - 1)).subscribe(data => {
-      var jsonData = JSON.parse(JSON.stringify(data.orders));
-      this.orders.data = jsonData;
+      var jsonData = JSON.parse(JSON.stringify(data));
+      this.orders.data = jsonData.orders;
     });
   }
 

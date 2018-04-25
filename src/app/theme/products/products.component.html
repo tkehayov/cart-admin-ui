@@ -13,7 +13,7 @@
         <div class="col-sm-4">
           <div class="input-group input-group-sm">
             <span class="input-group-addon" id="basic-addon8"><i class="icofont icofont-search-alt-2"></i></span>
-            <input (keyup)="searchTerm$.next($event.target.value)" type="text" class="form-control" placeholder="search">
+            <input (keyup)="searchTerm$.next($event.target.value)" type="text" class="form-control" placeholder="Search">
           </div>
         </div>
       </div>
@@ -22,9 +22,13 @@
 
         <ngx-datatable-column name="Name"></ngx-datatable-column>
         <ngx-datatable-column name="Description"></ngx-datatable-column>
+        <ngx-datatable-column name="Status">
+          <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+          </ng-template>
+        </ngx-datatable-column>
         <ngx-datatable-column name="Actions">
           <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
-            <button class="btn btn-info btn-mini btn-outline-info" (click)="goProductDetail(row.id)"><i class="icofont icofont-info-square"></i>Details</button>
+              <button class="btn btn-info btn-mini btn-outline-info" (click)="goProductDetail(row.id)"><i class="icofont icofont-info-square"></i>Details</button>
             <button class="btn btn-warning btn-mini btn-outline-warning" (click)="goProductEdit(row.id)"><i class="icofont icofont-ui-edit"></i>Edit</button>
             <button class="btn btn-danger btn-mini btn-outline-danger" (click)="delete(row.id)"><i class="icofont icofont-trash"></i>Delete</button>
           </ng-template>

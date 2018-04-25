@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import {animate, AUTO_STYLE, state, style, transition, trigger} from '@angular/animations';
-import {MenuItems} from '../../shared/menu-items/menu-items';
+import { animate, AUTO_STYLE, state, style, transition, trigger } from '@angular/animations';
+import { MenuItems } from '../../shared/menu-items/menu-items';
 import { BASICENDPOINT } from '../../constants';
 import { IntervalObservable } from 'rxjs/observable/IntervalObservable';
 
@@ -57,12 +57,12 @@ import { IntervalObservable } from 'rxjs/observable/IntervalObservable';
     ]),
     trigger('fadeInOutTranslate', [
       transition(':enter', [
-        style({opacity: 0}),
-        animate('400ms ease-in-out', style({opacity: 1}))
+        style({ opacity: 0 }),
+        animate('400ms ease-in-out', style({ opacity: 1 }))
       ]),
       transition(':leave', [
-        style({transform: 'translate(0)'}),
-        animate('400ms ease-in-out', style({opacity: 0}))
+        style({ transform: 'translate(0)' }),
+        animate('400ms ease-in-out', style({ opacity: 0 }))
       ])
     ])
   ]
@@ -121,8 +121,10 @@ export class AdminComponent implements OnInit {
   public itemBorder: boolean;
 
   public config: any;
-
-  constructor(private http: HttpClient,public menuItems: MenuItems) {
+  public orders = {
+    data: [],
+  };
+  constructor(private http: HttpClient, public menuItems: MenuItems) {
     this.navType = 'st2';
     this.themeLayout = 'vertical';
     this.verticalPlacement = 'left';
@@ -174,24 +176,19 @@ export class AdminComponent implements OnInit {
     this.setHeaderAttributes(this.windowWidth);
   }
   basicEndPoint = BASICENDPOINT;
-  orders = {
-    data:[]
-  };
 
   ngOnInit() {
     this.setBackgroundPattern('pattern1');
     this.http.get(BASICENDPOINT + '/orders/status/pending').subscribe(data => {
-      var jsonData = JSON.parse(JSON.stringify(data.orders));
-      this.orders.data = jsonData;
+      var jsonData = JSON.parse(JSON.stringify(data));
+      this.orders.data = jsonData.orders;
     })
 
     IntervalObservable.create(3600000).subscribe(n => this.http.get(BASICENDPOINT + '/orders/status/pending/?size=10&page=1').subscribe(data => {
-      var jsonData = JSON.parse(JSON.stringify(data.orders));
-      this.orders.data = jsonData;
+      var jsonData = JSON.parse(JSON.stringify(data));
+      this.orders.data = jsonData.order;
     })
-  );
-
-    /*document.querySelector('body').classList.remove('dark');*/
+    );
   }
 
   onResize(event) {
