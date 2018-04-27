@@ -74,6 +74,7 @@ export class AddProductComponent implements OnInit {
     this.submitted = true;
 
     if (this.productForm.status === "VALID") {
+      this.productForm.value.status = "inactive";
       this.http.post(BASICENDPOINT + '/products', this.productForm.value).subscribe(data => {
         this.state.focusedNodeId = 0;
         this.productForm.value.featureImage = "";

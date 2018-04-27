@@ -1,3 +1,4 @@
+<simple-notifications [options]="options"></simple-notifications>
 <div class="row">
   <div class="col-sm-12">
     <app-card>
@@ -18,24 +19,44 @@
         </div>
       </div>
 
-      <ngx-datatable class="data-table" [rows]="products.data" [columnMode]="'force'" [headerHeight]="50" [rowHeight]="'auto'">
+      <table class="table data-table fullscreen">
+        <tr>
+          <th>Name</th>
+          <th>Description</th>
+          <th>Status</th>
+          <th>Actions</th>
+        </tr>
+        <tr *ngFor="let product of products.data">
+          <td>
+            {{product.name}}
+          </td>
+          <td>
+            {{product.description}}
+          </td>
+          <td>
 
-        <ngx-datatable-column name="Name"></ngx-datatable-column>
-        <ngx-datatable-column name="Description"></ngx-datatable-column>
-        <ngx-datatable-column name="Status">
-          <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
-          </ng-template>
-        </ngx-datatable-column>
-        <ngx-datatable-column name="Actions">
-          <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
-              <button class="btn btn-info btn-mini btn-outline-info" (click)="goProductDetail(row.id)"><i class="icofont icofont-info-square"></i>Details</button>
-            <button class="btn btn-warning btn-mini btn-outline-warning" (click)="goProductEdit(row.id)"><i class="icofont icofont-ui-edit"></i>Edit</button>
-            <button class="btn btn-danger btn-mini btn-outline-danger" (click)="delete(row.id)"><i class="icofont icofont-trash"></i>Delete</button>
-          </ng-template>
-        </ngx-datatable-column>
-      </ngx-datatable>
+            <div ngbDropdown [ngClass]="{
+                  'dropdown-danger':product.status === 'inactive',
+                  'dropdown-success':product.status === 'active'}">
+
+              <button ngbDropdownToggle [ngClass]="{
+                    'btn-danger':product.status === 'inactive',
+                    'btn-success':product.status === 'active'}" class="btn btn-mini waves-effect waves-light" type="button">{{product.status}}</button>
+              <div ngbDropdownMenu>
+                <a [hidden]="product.status==='active'" class="dropdown-item waves-light waves-effect" (click)="updateStatus(product.id, 'active')" href="javascript:">Active</a>
+                <a [hidden]="product.status==='inactive'" class="dropdown-item waves-light waves-effect" (click)="updateStatus(product.id, 'inactive')" href="javascript:">Inactive</a>
+              </div>
+            </div>
+          </td>
+
+          <td>
+            <button class="btn btn-info btn-mini btn-outline-info" (click)="goProductDetail(product.id)"><i class="icofont icofont-info-square"></i>Details</button>
+            <button class="btn btn-warning btn-mini btn-outline-warning" (click)="goProductEdit(product.id)"><i class="icofont icofont-ui-edit"></i>Edit</button>
+            <button class="btn btn-danger btn-mini btn-outline-danger" (click)="delete(product.id)"><i class="icofont icofont-trash"></i>Delete</button>
+          </td>
+        </tr>
+      </table>
       <ngb-pagination [collectionSize]="products.totalPages" [maxSize]="maxSize" size="sm" [(page)]="page" [boundaryLinks]="true" (pageChange)="loadPage($event)"></ngb-pagination>
-
     </app-card>
   </div>
 </div>

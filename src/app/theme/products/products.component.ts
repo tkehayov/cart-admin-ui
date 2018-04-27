@@ -5,6 +5,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { CustomValidators } from 'ng2-validation';
 import { BASICENDPOINT } from '../../constants';
 import { transition, trigger, style, animate } from '@angular/animations';
+import { NotificationsService } from 'angular2-notifications';
 import swal from 'sweetalert2';
 import { Subject } from 'rxjs/Subject';
 import { SearchService } from '../../shared/search.service';
@@ -16,7 +17,19 @@ import { SearchService } from '../../shared/search.service';
   styleUrls: [
     './products.component.scss',
     './../../../assets/icon/icofont/css/icofont.scss',
-    '../../../../node_modules/sweetalert2/src/sweetalert2.scss']
+    '../../../../node_modules/sweetalert2/src/sweetalert2.scss'],
+  animations: [
+    trigger('fadeInOutTranslate', [
+      transition(':enter', [
+        style({ opacity: 0 }),
+        animate('400ms ease-in-out', style({ opacity: 1 }))
+      ]),
+      transition(':leave', [
+        style({ transform: 'translate(0)' }),
+        animate('400ms ease-in-out', style({ opacity: 0 }))
+      ])
+    ])
+  ]
 })
 
 export class ProductsComponent implements OnInit {
@@ -26,6 +39,13 @@ export class ProductsComponent implements OnInit {
   };
   searchTerm$ = new Subject<string>();
 
+  // pnotify options
+  options: any = {
+    position: ['bottom', 'right'],
+    timeOut: 1000,
+    theClass: 'small-icon'
+  };
+
   showDialog = false;
   public config: any;
   public pageSize = 10;
@@ -33,7 +53,7 @@ export class ProductsComponent implements OnInit {
   public page = 1;
   Arr = Array;
 
-  constructor(private http: HttpClient, private router: Router, private searchService: SearchService) {
+  constructor(private http: HttpClient, private router: Router, private searchService: SearchService, private servicePNotify: NotificationsService) {
     this.searchService.search(this.searchTerm$)
       .subscribe(results => {
         var jsonData = JSON.parse(JSON.stringify(results.productList));
@@ -69,7 +89,7 @@ export class ProductsComponent implements OnInit {
         this.http.delete(BASICENDPOINT + '/products/' + id).subscribe(data => {
           swal(
             'Deleted!',
-            'Product has been deleted.',
+            'Product deleted.',
             'success'
           )
 
@@ -100,5 +120,20 @@ export class ProductsComponent implements OnInit {
 
   goProductEdit(productId) {
     this.router.navigate(['products/edit/' + productId]);
+  }
+
+  updateStatus(productId, status) {
+    this.http.put(BASICENDPOINT + "/products/status/" + productId + "/" + status, "", { responseType: 'text' }).subscribe(data => {
+      for (var index in this.products.data) {
+        if (this.products.data[index].id == productId) {
+          this.products.data[index].status = data;
+        }
+      }
+
+      this.servicePNotify.success(
+        "",
+        "Product status updated."
+      );
+    });
   }
 }

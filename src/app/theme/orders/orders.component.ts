@@ -27,7 +27,7 @@ export class OrdersComponent implements OnInit {
   ngOnInit() {
     this.http.get(BASICENDPOINT + '/orders/?size=' + this.pageSize + '&page=' + (this.page - 1)).subscribe(data => {
       var jsonData = JSON.parse(JSON.stringify(data));
-      console.log("maliii",jsonData.pageSize);
+
       this.orders.totalPages = jsonData.pageSize * 10;
       this.orders.data = jsonData.orders;
     });
