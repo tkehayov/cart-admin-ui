@@ -1,11 +1,36 @@
 <simple-notifications [options]="options"></simple-notifications>
 <div class="row">
-  <div class="col-sm-12">
-    <app-card [title]="'Categories'" [classHeader]="true">
+  <div class="col-sm-5">
+    <app-card [title]="'Categories'" [classHeader]="false">
       <div class="col-sm-12">
         <div class="col-sm-10">
-          <tree-root [(state)]="state" [nodes]="category" [options]="options" (click)="selectCategory()"></tree-root>
+          <tree-root [(state)]="state" [nodes]="tree" [options]="options"></tree-root>
         </div>
+      </div>
+    </app-card>
+  </div>
+
+  <div class="col-sm-7">
+    <app-card [title]="" [classHeader]="false">
+      <div class="col-sm-12">
+        <table class="table data-table fullscreen">
+          <tr>
+            <th>Name</th>
+            <th>Path</th>
+          </tr>
+
+          <tr *ngFor="let cat of category">
+            <td>{{cat.name}}</td>
+            <td>
+              <div class="form-inline">
+                <div class="mx-sm-1 mb-1">
+                  <input type="text" class="form-control form-control-sm col-sm-3" id="path" [(ngModel)]="cat.path" placeholder="path">
+                  <button class="btn btn-info btn-mini" (click)="updateCategory(cat.id,cat.path)"><i class="icofont icofont-upload-alt"></i>Update</button>
+                </div>
+              </div>
+            </td>
+          </tr>
+        </table>
       </div>
     </app-card>
   </div>

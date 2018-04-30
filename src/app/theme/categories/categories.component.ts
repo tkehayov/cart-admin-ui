@@ -14,7 +14,6 @@ import { NotificationsService } from 'angular2-notifications';
 })
 
 export class CategoriesComponent implements OnInit {
-  productForm: FormGroup;
   options: any = {
     position: ['bottom', 'right'],
     timeOut: 1000,
@@ -23,22 +22,42 @@ export class CategoriesComponent implements OnInit {
 
   state: ITreeState;
   category = [];
+  tree = [];
 
-  constructor(private router: Router, private http: HttpClient) {
-    this.productForm = new FormGroup({});
+  constructor(private router: Router, private http: HttpClient,private servicePNotify: NotificationsService) {
   }
 
   ngOnInit() {
     this.listCategories();
   }
 
-  selectCategory() {
-    this.productForm.value.categoryId = this.state.focusedNodeId;
-  }
-
   listCategories() {
     this.http.get(BASICENDPOINT + '/categories').subscribe(data => {
-      this.category = JSON.parse(JSON.stringify(data));
+      this.tree = JSON.parse(JSON.stringify(data));
+      var a = this.maxDepth(JSON.parse(JSON.stringify(data)));
     });
+  }
+
+  maxDepth(root) {
+    for (var index in root) {
+      var cat = { name: root[index].name, id: root[index].id, path: root[index].path };
+
+      this.category.push(cat);
+      this.maxDepth(root[index].children);
+    }
+  }
+
+  updateCategory(id, path) {
+    var message = { id: id, path: path };
+    this.http.put(BASICENDPOINT + '/categories', message).subscribe(data => {
+
+      this.servicePNotify.success(
+        "Success",
+        "Category updated"
+      );
+    }, Error => {
+      console.log(Error);
+    });
+
   }
 }
