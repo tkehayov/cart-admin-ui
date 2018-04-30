@@ -50,7 +50,8 @@ export class CategoriesComponent implements OnInit {
   updateCategory(id, path) {
     var message = { id: id, path: path };
     this.http.put(BASICENDPOINT + '/categories', message).subscribe(data => {
-
+      this.category = [];
+      this.listCategories();
       this.servicePNotify.success(
         "Success",
         "Category updated"
