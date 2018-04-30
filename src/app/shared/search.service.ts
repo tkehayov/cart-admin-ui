@@ -22,7 +22,7 @@ export class SearchService {
 
   searchEntries(term) {
     if (term == "") {
-      this.queryUrl = "";
+      this.queryUrl = "?size=10&page=0";
     }
     return this.http
       .get(this.baseUrl + this.queryUrl + term)
