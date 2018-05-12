@@ -19,7 +19,7 @@ import { ImageCropperModule } from 'ngx-image-cropper';
     ReactiveFormsModule,
     HttpClientModule,
     TreeModule,
-    ImageCropperModule
+    ImageCropperModule,
     SimpleNotificationsModule.forRoot()
   ],
   declarations: [EditProductComponent],

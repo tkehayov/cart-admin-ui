@@ -47,7 +47,7 @@ export class EditProductComponent implements OnInit {
     timeOut: 1000,
     theClass: 'small-icon'
   };
-
+  status = "";
   croppedImage: any = '';
   state: ITreeState;
   category = [];
@@ -75,7 +75,9 @@ export class EditProductComponent implements OnInit {
 
     this.http.get(BASICENDPOINT + '/products/' + this.queryParams).subscribe(data => {
       var products = JSON.parse(JSON.stringify(data));
-      this.gallery.featureImage = products.gallery.featureImage;
+      this.gallery = products.gallery;
+      this.status = products.status;
+
       this.productForm.setValue({
         name: products.name,
         description: products.description,
@@ -91,7 +93,7 @@ export class EditProductComponent implements OnInit {
     if (this.productForm.status === "VALID") {
       this.productForm.value.id = this.queryParams;
       this.productForm.value.gallery = this.gallery;
-
+      this.productForm.value.status = this.status;
       this.http.put(BASICENDPOINT + '/products', this.productForm.value).subscribe(data => {
         this.state.focusedNodeId = 0;
 
@@ -153,18 +155,11 @@ export class EditProductComponent implements OnInit {
     return blob;
   }
 
-  // addproductGalleryImage(id, filename) {
-  //   this.gallery.filenames.push(filename);
-  //   this.gallery.id.push(id);
-  //   this.productForm.value.gallery = this.gallery.id;
-  //
-  //   this.servicePNotify.success(
-  //     "Success",
-  //     "Image added to gallery"
-  //   );
-  // }
-
   fileChangeEvent(event: any): void {
     this.imageChangedEvent = event;
+  }
+
+  updateStatus(status) {
+    this.status = status;
   }
 }
