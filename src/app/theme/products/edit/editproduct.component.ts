@@ -56,11 +56,13 @@ export class EditProductComponent implements OnInit {
     const name = new FormControl('', Validators.required);
     const description = new FormControl('', Validators.required);
     const salePrice = new FormControl('', [Validators.required, CustomValidators.number]);
+    const oldPrice = new FormControl('', [CustomValidators.number]);
 
     this.productForm = new FormGroup({
       name: name,
       description: description,
-      salePrice: salePrice
+      salePrice: salePrice,
+      oldPrice: oldPrice
     });
   }
 
@@ -81,7 +83,8 @@ export class EditProductComponent implements OnInit {
       this.productForm.setValue({
         name: products.name,
         description: products.description,
-        salePrice: products.salePrice
+        salePrice: products.salePrice,
+        oldPrice:products.oldPrice
       });
     });
   }

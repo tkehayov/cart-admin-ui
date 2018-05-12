@@ -55,10 +55,13 @@ export class AddProductComponent implements OnInit {
     const name = new FormControl('', Validators.required);
     const description = new FormControl('', Validators.required);
     const salePrice = new FormControl('', [Validators.required, CustomValidators.number]);
+    const oldPrice = new FormControl('', [CustomValidators.number]);
+
     this.productForm = new FormGroup({
       name: name,
       description: description,
-      salePrice: salePrice
+      salePrice: salePrice,
+      oldPrice: oldPrice
     });
   }
 
@@ -77,7 +80,6 @@ export class AddProductComponent implements OnInit {
     if (this.productForm.status === "VALID") {
       this.productForm.value.status = "inactive";
       this.productForm.value.gallery = this.gallery;
-      console.log(this.productForm.value);
 
       this.http.post(BASICENDPOINT + '/products', this.productForm.value).subscribe(data => {
         this.state.focusedNodeId = 0;
@@ -86,7 +88,8 @@ export class AddProductComponent implements OnInit {
         this.productForm.setValue({
           name: "",
           description: "",
-          salePrice: 0
+          salePrice: 0,
+          oldPrice: null
         });
 
         this.servicePNotify.success(

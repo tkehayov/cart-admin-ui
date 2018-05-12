@@ -23,6 +23,8 @@
         <tr>
           <th>Name</th>
           <th>Description</th>
+          <th>Sale Price</th>
+          <th>Old Price</th>
           <th>Status</th>
           <th>Actions</th>
         </tr>
@@ -32,6 +34,12 @@
           </td>
           <td>
             {{product.description}}
+          </td>
+          <td>
+            {{product.salePrice}}
+          </td>
+          <td>
+            <del>{{product.oldPrice}}</del>
           </td>
           <td>
 
