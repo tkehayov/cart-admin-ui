@@ -131,13 +131,6 @@ export class AddProductComponent implements OnInit {
     });
   }
 
-  listImages() {
-    // this.http.get(BASICENDPOINT + '/gallery/imagelist').subscribe(data => {
-    //   var parsedJson = JSON.parse(JSON.stringify(data));
-    //   this.images = parsedJson.gallery;
-    // });
-  }
-
   fileChangeEvent(event: any): void {
     this.imageChangedEvent = event;
   }
