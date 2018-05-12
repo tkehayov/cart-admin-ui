@@ -35,10 +35,10 @@ export class EditProductComponent implements OnInit {
   productForm: FormGroup;
   submitted: boolean;
   results: string[];
-  featureImageUrl = "";
+  imageChangedEvent: any = '';
   gallery = {
-    "id": [],
-    "filenames": []
+    "featureImage": "",
+    "images": []
   };
 
   // pnotify options
@@ -48,6 +48,7 @@ export class EditProductComponent implements OnInit {
     theClass: 'small-icon'
   };
 
+  croppedImage: any = '';
   state: ITreeState;
   category = [];
 
@@ -69,14 +70,12 @@ export class EditProductComponent implements OnInit {
 
   ngOnInit() {
     this.listCategories();
-    this.listImages();
 
     this.route.params.subscribe(params => this.queryParams = params.id);
 
     this.http.get(BASICENDPOINT + '/products/' + this.queryParams).subscribe(data => {
       var products = JSON.parse(JSON.stringify(data));
-      this.featureImageUrl = products.featureImage;
-      this.gallery.filenames = products.gallery;
+      this.gallery.featureImage = products.gallery.featureImage;
       this.productForm.setValue({
         name: products.name,
         description: products.description,
@@ -91,9 +90,7 @@ export class EditProductComponent implements OnInit {
 
     if (this.productForm.status === "VALID") {
       this.productForm.value.id = this.queryParams;
-
-      this.productForm.value.featureImage = this.featureImageUrl;
-      this.productForm.value.gallery = this.gallery.filenames;
+      this.productForm.value.gallery = this.gallery;
 
       this.http.put(BASICENDPOINT + '/products', this.productForm.value).subscribe(data => {
         this.state.focusedNodeId = 0;
@@ -114,42 +111,60 @@ export class EditProductComponent implements OnInit {
     });
   }
 
-  listImages() {
-    this.http.get(BASICENDPOINT + '/gallery/imagelist').subscribe(data => {
-      var jsonData = JSON.parse(JSON.stringify(data));
-      this.images = jsonData.gallery;
+  imageCropped(image: string) {
+    this.croppedImage = image;
+  }
+
+  send(type) {
+    var formData = new FormData();
+    var croppedImage = this.dataURItoBlob(this.croppedImage);
+
+    formData.set("file", croppedImage, "bat.jpg");
+
+    this.http.post(BASICENDPOINT + '/gallery/image', formData).subscribe(data => {
+      var parsedJson = JSON.parse(JSON.stringify(data));
+      if (type == "gallery") {
+        this.gallery.images.push(parsedJson.filename);
+      }
+
+      if (type == "feature") {
+        this.gallery.featureImage = parsedJson.filename;
+      }
+
+      this.servicePNotify.success(
+        "Success",
+        "Feature image added"
+      );
+    }, Error => {
+      console.log(Error);
     });
   }
 
-  addproductFeatureImage(id, filename) {
-    this.productForm.value.featureImage = id;
-    this.featureImageUrl = filename;
-    this.servicePNotify.success(
-      "Success",
-      "Feature image edited"
-    );
-  }
-
-  addproductGalleryImage(id, filename) {
-    this.gallery.filenames.push(filename);
-    this.gallery.id.push(id);
-    this.productForm.value.gallery = this.gallery.id;
-
-    this.servicePNotify.success(
-      "Success",
-      "Image added to gallery"
-    );
-  }
-
-  deleteProductGallery(image) {
-    var currentImageIndex = this.gallery.filenames.indexOf(image);
-
-    if (currentImageIndex > -1) {
-      this.gallery.filenames.splice(currentImageIndex, 1);
+  dataURItoBlob(dataURI) {
+    var byteString = atob(dataURI.split(',')[1]);
+    var mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0]
+    var ab = new ArrayBuffer(byteString.length);
+    var ia = new Uint8Array(ab);
+    for (var i = 0; i < byteString.length; i++) {
+      ia[i] = byteString.charCodeAt(i);
     }
+
+    var blob = new Blob([ab], { type: mimeString });
+    return blob;
   }
 
-  deleteProductFeatureImage() {
-    this.featureImageUrl = "";
+  // addproductGalleryImage(id, filename) {
+  //   this.gallery.filenames.push(filename);
+  //   this.gallery.id.push(id);
+  //   this.productForm.value.gallery = this.gallery.id;
+  //
+  //   this.servicePNotify.success(
+  //     "Success",
+  //     "Image added to gallery"
+  //   );
+  // }
+
+  fileChangeEvent(event: any): void {
+    this.imageChangedEvent = event;
   }
 }

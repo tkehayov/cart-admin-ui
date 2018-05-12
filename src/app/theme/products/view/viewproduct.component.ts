@@ -17,7 +17,9 @@ import swal from 'sweetalert2';
 export class ViewProductComponent implements OnInit {
   queryParams: { id: "" };
   basicEndPoint = BASICENDPOINT;
-  products = {};
+  products = {
+    "gallery":[]
+  };
 
   constructor(private http: HttpClient, private route: ActivatedRoute, private router: Router) { }
 
@@ -35,7 +37,6 @@ export class ViewProductComponent implements OnInit {
   }
 
   deleteProduct() {
-    // this.queryParams
     swal({
       title: 'Are you sure?',
       text: 'Product wont be able to revert',

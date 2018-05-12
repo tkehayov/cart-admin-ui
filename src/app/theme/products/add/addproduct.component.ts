@@ -29,15 +29,17 @@ import { NotificationsService } from 'angular2-notifications';
 
 export class AddProductComponent implements OnInit {
   basicEndPoint = BASICENDPOINT;
-  images = [];
+
+  gallery = {
+    "featureImage": "",
+    "images": []
+  };
+
   productForm: FormGroup;
   submitted: boolean;
   results: string[];
-  featureImageUrl = "";
-  gallery = {
-    "id": [],
-    "filenames": []
-  };
+  imageChangedEvent: any = '';
+  croppedImage: any = '';
 
   // pnotify options
   options: any = {
@@ -66,7 +68,6 @@ export class AddProductComponent implements OnInit {
 
   ngOnInit() {
     this.listCategories();
-    this.listImages();
   }
 
   onSubmit() {
@@ -75,13 +76,12 @@ export class AddProductComponent implements OnInit {
 
     if (this.productForm.status === "VALID") {
       this.productForm.value.status = "inactive";
+      this.productForm.value.gallery = this.gallery;
+      console.log(this.productForm.value);
+
       this.http.post(BASICENDPOINT + '/products', this.productForm.value).subscribe(data => {
         this.state.focusedNodeId = 0;
         this.productForm.value.featureImage = "";
-        this.featureImageUrl = "";
-
-        this.gallery.filenames = [];
-        this.gallery.id = [];
 
         this.productForm.setValue({
           name: "",
@@ -99,36 +99,55 @@ export class AddProductComponent implements OnInit {
     }
   }
 
+  send(type) {
+    var formData = new FormData();
+    var croppedImage = this.dataURItoBlob(this.croppedImage);
+
+    formData.set("file", croppedImage, "bat.jpg");
+
+    this.http.post(BASICENDPOINT + '/gallery/image', formData).subscribe(data => {
+      var parsedJson = JSON.parse(JSON.stringify(data));
+      if (type == "gallery") {
+        this.gallery.images.push(parsedJson.filename);
+      }
+
+      if (type == "feature") {
+        this.gallery.featureImage = parsedJson.filename;
+      }
+
+      this.servicePNotify.success(
+        "Success",
+        "Feature image added"
+      );
+    }, Error => {
+      console.log(Error);
+    });
+  }
+
   listCategories() {
     this.http.get(BASICENDPOINT + '/categories').subscribe(data => {
       this.category = JSON.parse(JSON.stringify(data));
     });
   }
 
-  listImages() {
-    this.http.get(BASICENDPOINT + '/gallery/imagelist').subscribe(data => {
-      var parsedJson = JSON.parse(JSON.stringify(data));
-      this.images = parsedJson.gallery;
-    });
+  fileChangeEvent(event: any): void {
+    this.imageChangedEvent = event;
   }
 
-  addproductFeatureImage(id, filename) {
-    this.productForm.value.featureImage = id;
-    this.featureImageUrl = filename;
-    this.servicePNotify.success(
-      "Success",
-      "Feature image added"
-    );
+  imageCropped(image: string) {
+    this.croppedImage = image;
   }
 
-  addproductGalleryImage(id, filename) {
-    this.gallery.filenames.push(filename);
-    this.gallery.id.push(id);
-    this.productForm.value.gallery = this.gallery.id;
+  dataURItoBlob(dataURI) {
+    var byteString = atob(dataURI.split(',')[1]);
+    var mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0]
+    var ab = new ArrayBuffer(byteString.length);
+    var ia = new Uint8Array(ab);
+    for (var i = 0; i < byteString.length; i++) {
+      ia[i] = byteString.charCodeAt(i);
+    }
 
-    this.servicePNotify.success(
-      "Success",
-      "Image added to gallery"
-    );
+    var blob = new Blob([ab], { type: mimeString });
+    return blob;
   }
 }

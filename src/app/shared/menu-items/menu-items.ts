@@ -53,12 +53,6 @@ const MENUITEMS = [
         icon: 'icon-layout-grid3-alt'
       },
       {
-        state: 'gallery',
-        name: 'Gallery',
-        type: 'link',
-        icon: 'icon-gallery'
-      },
-      {
         state: 'orders',
         name: 'Orders',
         type: 'link',

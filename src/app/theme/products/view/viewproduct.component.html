@@ -36,8 +36,8 @@
             <div class="form-group row">
               <label class="col-sm-2 col-form-label">Feature Image</label>
               <div class="col-lg-4 col-md-12">
-                <div class="popular-img-block" *ngIf="products.featureImage">
-                  <img class="img-fluid" src="{{basicEndPoint}}/gallery/image/{{products.featureImage}}" />
+                <div class="popular-img-block" *ngIf="products.gallery.featureImage">
+                  <img class="img-fluid" src="{{basicEndPoint}}/gallery/image/{{products.gallery.featureImage}}" />
                 </div>
               </div>
             </div>
@@ -46,7 +46,7 @@
               <label class="col-sm-2 col-form-label">Gallery</label>
               <div class="col-lg-4 col-md-12">
                 <div class="popular-img-block">
-                  <img *ngFor="let image of products.gallery" class="img-fluid" src="{{basicEndPoint}}/gallery/image/{{image}}" />
+                  <img *ngFor="let image of products.gallery.images" class="img-fluid" src="{{basicEndPoint}}/gallery/image/{{image}}" />
                 </div>
               </div>
             </div>

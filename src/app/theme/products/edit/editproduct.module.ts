@@ -7,6 +7,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import {SimpleNotificationsModule} from 'angular2-notifications';
 import { TreeModule } from 'angular-tree-component';
+import { ImageCropperModule } from 'ngx-image-cropper';
 
 
 @NgModule({
@@ -18,6 +19,7 @@ import { TreeModule } from 'angular-tree-component';
     ReactiveFormsModule,
     HttpClientModule,
     TreeModule,
+    ImageCropperModule
     SimpleNotificationsModule.forRoot()
   ],
   declarations: [EditProductComponent],
