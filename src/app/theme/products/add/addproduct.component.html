@@ -63,14 +63,26 @@
                     <div class="form-group row category">
                       <label class="col-sm-2 col-form-label">Feature image</label>
                       <div class="col-sm-10">
-                        <button type="button" class="btn btn-success btn-sm" (click)="uploadImage.show()"><i class="fa fa-upload"></i>Upload</button>
+                        <button type="button" class="btn btn-success btn-sm" (click)="uploadFeatureImage.show()"><i class="fa fa-upload"></i>Upload</button>
                         <div *ngIf="gallery.featureImage" class="popular-img-block">
                           <img class="img-fluid" src="{{basicEndPoint}}/gallery/image/{{gallery.featureImage}}" />
                         </div>
                       </div>
                     </div>
 
-                    <app-modal-basic #uploadImage [dialogClass]="'modal-lg'">
+                    <div [@fadeInOutTranslate] class="m-t-15">
+                      <div class="form-group row category">
+                        <label class="col-sm-2 col-form-label">Gallery images</label>
+                        <div class="col-sm-10">
+                          <button type="button" class="btn btn-success btn-sm" (click)="uploadGalleryImages.show()"><i class="fa fa-upload"></i>Upload</button>
+                          <div *ngIf="gallery.images" class="popular-img-block">
+                            <img *ngFor="let image of gallery.images" class="img-fluid" src="{{basicEndPoint}}/gallery/image/{{image}}" />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <app-modal-basic #uploadFeatureImage [dialogClass]="'modal-lg'">
                       <div class="app-modal-header">
                         <h5 class="modal-title">Feature image</h5>
                       </div>
@@ -82,10 +94,28 @@
                         </perfect-scrollbar>
                       </div>
                       <div class="app-modal-footer">
-                        <button class="btn btn-success btn-sm" (click)="send()"><i class="fa fa-upload"></i>Upload</button>
-                        <button class="btn btn-inverse btn-outline-inverse btn-sm" (click)="uploadImage.hide()">Close</button>
+                        <button class="btn btn-success btn-sm" (click)="send('feature')"><i class="fa fa-upload"></i>Upload</button>
+                        <button class="btn btn-inverse btn-outline-inverse btn-sm" (click)="uploadFeatureImage.hide()">Close</button>
                       </div>
                     </app-modal-basic>
+
+                    <app-modal-basic #uploadGalleryImages [dialogClass]="'modal-lg'">
+                      <div class="app-modal-header">
+                        <h5 class="modal-title">Feature image</h5>
+                      </div>
+                      <div class="app-modal-body">
+                        <perfect-scrollbar class="overflow-container" [style.width]="'100%'" [style.height]="'300px'" [config]="config">
+                          <input type="file" name="file" (change)="fileChangeEvent($event)" />
+                          <image-cropper [imageChangedEvent]="imageChangedEvent" [maintainAspectRatio]="true" [aspectRatio]="4 / 3" [resizeToWidth]="300" format="png" (imageCropped)="imageCropped($event)"></image-cropper>
+                          <img [src]="croppedImage" />
+                        </perfect-scrollbar>
+                      </div>
+                      <div class="app-modal-footer">
+                        <button class="btn btn-success btn-sm" (click)="send('gallery')"><i class="fa fa-upload"></i>Upload</button>
+                        <button class="btn btn-inverse btn-outline-inverse btn-sm" (click)="uploadGalleryImages.hide()">Close</button>
+                      </div>
+                    </app-modal-basic>
+
                   </div>
                 </ng-template>
               </ngb-tab>

@@ -31,7 +31,8 @@ export class AddProductComponent implements OnInit {
   basicEndPoint = BASICENDPOINT;
 
   gallery = {
-    "featureImage": ""
+    "featureImage": "",
+    "images": []
   };
 
   productForm: FormGroup;
@@ -76,6 +77,9 @@ export class AddProductComponent implements OnInit {
 
     if (this.productForm.status === "VALID") {
       this.productForm.value.status = "inactive";
+      this.productForm.value.gallery = this.gallery;
+      console.log(this.productForm.value);
+
       this.http.post(BASICENDPOINT + '/products', this.productForm.value).subscribe(data => {
         this.state.focusedNodeId = 0;
         this.productForm.value.featureImage = "";
@@ -96,7 +100,7 @@ export class AddProductComponent implements OnInit {
     }
   }
 
-  send() {
+  send(type) {
     var formData = new FormData();
     var croppedImage = this.dataURItoBlob(this.croppedImage);
 
@@ -104,7 +108,13 @@ export class AddProductComponent implements OnInit {
 
     this.http.post(BASICENDPOINT + '/gallery/image', formData).subscribe(data => {
       var parsedJson = JSON.parse(JSON.stringify(data));
-      this.gallery.featureImage = parsedJson.filename;
+      if (type == "gallery") {
+        this.gallery.images.push(parsedJson.filename);
+      }
+
+      if (type == "feature") {
+        this.gallery.featureImage = parsedJson.filename;
+      }
 
       this.servicePNotify.success(
         "Success",
