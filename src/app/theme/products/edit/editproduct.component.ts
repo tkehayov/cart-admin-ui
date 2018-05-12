@@ -90,8 +90,6 @@ export class EditProductComponent implements OnInit {
 
     if (this.productForm.status === "VALID") {
       this.productForm.value.id = this.queryParams;
-
-      // this.productForm.value.gallery = this.gallery.filenames;
       this.productForm.value.gallery = this.gallery;
 
       this.http.put(BASICENDPOINT + '/products', this.productForm.value).subscribe(data => {
