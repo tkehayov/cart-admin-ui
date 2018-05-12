@@ -68,7 +68,6 @@ export class AddProductComponent implements OnInit {
 
   ngOnInit() {
     this.listCategories();
-    this.listImages();
   }
 
   onSubmit() {
