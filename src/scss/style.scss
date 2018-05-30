@@ -1,6 +1,6 @@
 /**
 
-Template Name: Cartico Admin
+Template Name: Gradient Able Admin Template
 Author: #
 Email: #
 File: style.scss
@@ -26,9 +26,8 @@ File: style.scss
 
 ============= */
 
-@import "themify-icons/themify-icons";
-
 // General theme contents
+@import '~bootstrap/scss/bootstrap';
 @import "partials/variables";
 @import "partials/mixins";
 @import "partials/general";
@@ -89,4 +88,5 @@ File: style.scss
 @import '~ngx-bar-rating/themes/br-stars-theme';
 @import '~ngx-bar-rating/themes/br-movie-theme';
 @import '~ngx-bar-rating/themes/br-square-theme';
+
 @import '~angular-tree-component/dist/angular-tree-component.css';

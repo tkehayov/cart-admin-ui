@@ -6,39 +6,39 @@
       <div class="navbar-wrapper">
         <div class="navbar-logo">
           <a class="mobile-menu" id="mobile-collapse" href="javascript:" (click)="toggleOpened()" [exclude]="'#main_navbar'" (clickOutside)="onClickedOutsideSidebar($event)">
-            <i class="icon-menu"></i>
+            <i class="ti-menu"></i>
           </a>
           <a [routerLink]="['/products/']">
             <img class="img-fluid" src="assets/images/logo.png" alt="Theme-Logo" />
           </a>
           <a href="javascript:" class="mobile-options" (click)="toggleHeaderNavRight()">
-            <i class="icon-more"></i>
+            <i class="ti-more"></i>
           </a>
         </div>
         <div class="navbar-container container-fluid">
           <ul class="nav-left">
             <li>
-              <div class="sidebar_toggle"><a href="javascript:"><i class="icon-menu"></i></a></div>
+              <div class="sidebar_toggle"><a href="javascript:"><i class="ti-menu"></i></a></div>
             </li>
             <li class="header-search">
               <div id="main-search" class="main-search morphsearch-search">
                 <div class="input-group">
-                  <span class="input-group-addon search-close" (click)="searchOff()"><i class="icon-close"></i></span>
+                  <span class="input-group-prepend search-close" (click)="searchOff()"><i class="ti-close input-group-text"></i></span>
                   <input class="form-control" [style.width]="searchWidthString">
-                  <span class="input-group-addon search-btn" (click)="searchOn()"><i class="icon-search"></i></span>
+                  <span class="input-group-append search-btn" (click)="searchOn()"><i class="ti-search input-group-text"></i></span>
                 </div>
               </div>
             </li>
             <li appToggleFullScreen>
               <a href="javascript:">
-                <i class="icon-fullscreen"></i>
+                <i class="ti-fullscreen"></i>
               </a>
             </li>
           </ul>
           <ul [@mobileHeaderNavRight]="navRight" [ngClass]="navRight" class="nav-right">
             <li (clickOutside)="notificationOutsideClick('live')" class="header-notification" [ngClass]="liveNotificationClass" (click)="toggleLiveNotification()">
               <a href="javascript:">
-                <i class="icon-bell"></i>
+                <i class="ti-bell"></i>
                 <span [ngClass]="{
                   'badge': orders.data.length != 0,
                   'bg-c-green':orders.data.length != 0}"></span>
@@ -63,12 +63,12 @@
               <a href="javascript:">
                 <img src="assets/images/avatar-4.jpg" class="img-radius" alt="User-Profile-Image">
                 <span>Tihomir Kehayov</span>
-                <i class="icon-angle-down"></i>
+                <i class="ti-angle-down"></i>
               </a>
               <ul [@notificationBottom]="profileNotification" class="show-notification profile-notification">
                 <li>
                   <a [routerLink]="['/authentication/login/']">
-                    <i class="icon-layout-sidebar-left"></i> Logout
+                    <i class="ti-layout-sidebar-left"></i> Logout
                   </a>
                 </li>
               </ul>
@@ -123,7 +123,7 @@
                   <ng-template ngFor let-asideChildren [ngForOf]="asideItem.children">
                     <li [routerLinkActive]="['active']" *ngIf="asideChildren.type !== 'sub'">
                       <a [routerLink]="['/', asideItem.state, asideChildren.state]" target="{{asideChildren.target ? '_blank' : '_self'}}">
-                            <span class="pcoded-micon"><i class="icon-angle-right"></i></span>
+                            <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
                             <span class="pcoded-mtext">{{ asideChildren.name }} </span>
                             <span *ngFor="let asideChildrenBadge of asideChildren.badge" class="pcoded-badge label label-{{ asideChildrenBadge.type }}">{{asideChildrenBadge.value}}</span>
                             <span class="pcoded-mcaret"></span>
@@ -132,7 +132,7 @@
 
                     <li [routerLinkActive]="['active']" class="pcoded-hasmenu" [attr.dropdown-icon]="dropDownIcon" [attr.subitem-icon]="subItemIcon" *ngIf="asideChildren.type === 'sub'" appAccordionLink group="sub-toggled">
                       <a href="javascript:;" appAccordionToggle>
-                            <span class="pcoded-micon"><i class="icon-direction-alt"></i></span>
+                            <span class="pcoded-micon"><i class="ti-direction-alt"></i></span>
                             <span class="pcoded-mtext">{{ asideChildren.name }}</span>
                             <span *ngFor="let asideChildrenBadge of asideChildren.badge" class="pcoded-badge label label-{{ asideChildrenBadge.type }}">{{asideChildrenBadge.value}}</span>
                             <span class="pcoded-mcaret"></span>
@@ -141,7 +141,7 @@
                         <ng-template ngFor let-asideChildrenSub [ngForOf]="asideChildren.children">
                           <li [routerLinkActive]="['active']">
                             <a [routerLink]="['/', asideItem.state, asideChildren.state, asideChildrenSub.state]" target="{{asideChildrenSub.target ? '_blank' : '_self'}}">
-                                  <span class="pcoded-micon"><i class="icon-angle-right"></i></span>
+                                  <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
                                   <span class="pcoded-mtext">{{ asideChildrenSub.name }}</span>
                                   <span *ngFor="let asideChildrenSubBadge of asideChildrenSub.badge" class="pcoded-badge label label-{{ asideChildrenSubBadge.type }}">{{asideChildrenSubBadge.value}}</span>
                                   <span class="pcoded-mcaret"></span>

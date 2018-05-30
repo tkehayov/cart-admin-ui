@@ -59,7 +59,7 @@ export class ViewProductComponent implements OnInit {
           )
           this.router.navigate(['products']);
         });
-      } else if (result.dismiss === 'cancel') {
+      } else {
         swal(
           'Cancelled',
           'Product is not deleted',

@@ -12,8 +12,10 @@
     <app-card [title]="'List products'">
       <div class="row">
         <div class="col-sm-4">
-          <div class="input-group input-group-sm">
-            <span class="input-group-addon" id="basic-addon8"><i class="icofont icofont-search-alt-2"></i></span>
+          <div class="input-group input-group-button input-group-sm">
+          <div class="input-group-prepend">
+            <button class="btn btn-primary" type="button"><i class="ti-search"></i></button>
+          </div>
             <input (keyup)="searchTerm$.next($event.target.value)" type="text" class="form-control" placeholder="Search">
           </div>
         </div>

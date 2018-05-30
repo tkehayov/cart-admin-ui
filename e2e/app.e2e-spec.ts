@@ -1,6 +1,6 @@
 import { AppPage } from './app.po';
 
-describe('gradient-able-a5 App', () => {
+describe('gradient-able-v1.7.0 App', () => {
   let page: AppPage;
 
   beforeEach(() => {

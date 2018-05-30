@@ -38,7 +38,7 @@ const MENUITEMS = [
         state: 'products',
         name: 'Products',
         type: 'link',
-        icon: 'icon-dropbox',
+        icon: 'ti-gift',
         children: [
           {
             state: 'view',
@@ -50,13 +50,13 @@ const MENUITEMS = [
         state: 'categories',
         name: 'Categories',
         type: 'link',
-        icon: 'icon-layout-grid3-alt'
+        icon: 'ti-view-grid'
       },
       {
         state: 'orders',
         name: 'Orders',
         type: 'link',
-        icon: 'icon-shopping-cart'
+        icon: 'ti-truck'
       }
     ],
   }

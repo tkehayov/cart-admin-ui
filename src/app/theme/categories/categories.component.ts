@@ -19,7 +19,7 @@ export class CategoriesComponent implements OnInit {
     timeOut: 1000,
     theClass: 'small-icon'
   };
-
+//
   state: ITreeState;
   category = [];
   tree = [];

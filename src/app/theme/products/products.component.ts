@@ -95,7 +95,7 @@ export class ProductsComponent implements OnInit {
 
           this.ngOnInit();
         });
-      } else if (result.dismiss === 'cancel') {
+      } else {
         swal(
           'Cancelled',
           'Product not deleted',
