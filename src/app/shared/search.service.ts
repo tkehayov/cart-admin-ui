@@ -21,11 +21,18 @@ export class SearchService {
   }
 
   searchEntries(term) {
+    console.log(this.baseUrl + this.queryUrl + term);
+    var query = this.baseUrl + this.queryUrl + term;
     if (term == "") {
       this.queryUrl = "?size=10&page=0";
+      query = this.baseUrl + this.queryUrl;
+    }else{
+      this.queryUrl = '?name=';
+      query = this.baseUrl + this.queryUrl + term;
     }
+
     return this.http
-      .get(this.baseUrl + this.queryUrl + term)
+      .get(query)
       .map(res => res.json());
   }
 }
