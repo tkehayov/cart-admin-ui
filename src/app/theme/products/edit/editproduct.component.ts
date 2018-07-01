@@ -6,6 +6,7 @@ import { BASICENDPOINT } from '../../../constants';
 import { transition, trigger, style, animate } from '@angular/animations';
 import { NotificationsService } from 'angular2-notifications';
 import { ActivatedRoute, RouterModule, Routes } from '@angular/router';
+import { ITreeState } from 'angular-tree-component';
 
 @Component({
   selector: 'app-product',

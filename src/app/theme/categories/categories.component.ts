@@ -4,6 +4,8 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { BASICENDPOINT } from '../../constants';
 import { NotificationsService } from 'angular2-notifications';
+import { ITreeState } from 'angular-tree-component';
+
 @Component({
   selector: 'app-categories',
   templateUrl: './categories.component.html',
@@ -19,7 +21,7 @@ export class CategoriesComponent implements OnInit {
     timeOut: 1000,
     theClass: 'small-icon'
   };
-//
+
   state: ITreeState;
   category = [];
   tree = [];
