@@ -6,7 +6,7 @@ import { BASICENDPOINT } from '../../../constants';
 import { transition, trigger, style, animate } from '@angular/animations';
 import { NotificationsService } from 'angular2-notifications';
 import { ActivatedRoute, RouterModule, Routes } from '@angular/router';
-import { ITreeState } from 'angular-tree-component';
+import { TreeNode, TreeModel,ITreeState, ITreeOptions } from 'angular-tree-component';
 
 @Component({
   selector: 'app-product',
@@ -73,7 +73,6 @@ export class EditProductComponent implements OnInit {
 
   ngOnInit() {
     this.listCategories();
-
     this.route.params.subscribe(params => this.queryParams = params.id);
 
     this.http.get(BASICENDPOINT + '/products/' + this.queryParams).subscribe(data => {
