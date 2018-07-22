@@ -71,7 +71,7 @@ export class EditProductComponent implements OnInit {
   }
 
   selectCategory() {
-    this.productForm.value.categoryId = this.state.focusedNodeId;
+    this.categoryId = this.state.focusedNodeId.toString();
   }
 
   ngOnInit() {
@@ -101,6 +101,8 @@ export class EditProductComponent implements OnInit {
       this.productForm.value.id = this.queryParams;
       this.productForm.value.gallery = this.gallery;
       this.productForm.value.status = this.status;
+      this.productForm.value.categoryId = this.categoryId;
+
       this.http.put(BASICENDPOINT + '/products', this.productForm.value).subscribe(data => {
         this.state.focusedNodeId = 0;
 
@@ -128,7 +130,6 @@ export class EditProductComponent implements OnInit {
   send(type) {
     var formData = new FormData();
     var croppedImage = this.dataURItoBlob(this.croppedImage);
-
     formData.set("file", croppedImage, "bat.jpg");
 
     this.http.post(BASICENDPOINT + '/gallery/image', formData).subscribe(data => {
