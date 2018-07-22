@@ -6,7 +6,7 @@ import { BASICENDPOINT } from '../../../constants';
 import { transition, trigger, style, animate } from '@angular/animations';
 import { NotificationsService } from 'angular2-notifications';
 import { ActivatedRoute, RouterModule, Routes } from '@angular/router';
-import { TreeNode, TreeModel,ITreeState, ITreeOptions } from 'angular-tree-component';
+import { TreeNode, TreeModel, ITreeState, ITreeOptions } from 'angular-tree-component';
 
 @Component({
   selector: 'app-product',
@@ -41,7 +41,7 @@ export class EditProductComponent implements OnInit {
     "featureImage": "",
     "images": []
   };
-
+  categoryId = "";
   // pnotify options
   options: any = {
     position: ['bottom', 'right'],
@@ -50,7 +50,10 @@ export class EditProductComponent implements OnInit {
   };
   status = "";
   croppedImage: any = '';
-  state: ITreeState;
+  state: ITreeState = {
+    activeNodeIds: {}
+  };
+
   category = [];
 
   constructor(private http: HttpClient, private servicePNotify: NotificationsService, private route: ActivatedRoute) {
@@ -72,21 +75,22 @@ export class EditProductComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.listCategories();
     this.route.params.subscribe(params => this.queryParams = params.id);
 
     this.http.get(BASICENDPOINT + '/products/' + this.queryParams).subscribe(data => {
       var products = JSON.parse(JSON.stringify(data));
       this.gallery = products.gallery;
       this.status = products.status;
+      this.categoryId = products.categoryId;
 
       this.productForm.setValue({
         name: products.name,
         description: products.description,
         salePrice: products.salePrice,
-        oldPrice:products.oldPrice
+        oldPrice: products.oldPrice
       });
     });
+    this.listCategories();
   }
 
   onSubmit() {
@@ -113,6 +117,7 @@ export class EditProductComponent implements OnInit {
   listCategories() {
     this.http.get(BASICENDPOINT + '/categories').subscribe(data => {
       this.category = JSON.parse(JSON.stringify(data));
+      this.state.activeNodeIds[this.categoryId] = true;
     });
   }
 
