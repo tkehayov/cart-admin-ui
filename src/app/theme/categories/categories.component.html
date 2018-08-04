@@ -25,9 +25,25 @@
               <div class="form-inline">
                 <div class="mx-sm-1 mb-1">
                   <input type="text" class="form-control form-control-sm col-sm-3" id="path" [(ngModel)]="cat.path" placeholder="path">
-                  <button class="btn btn-info btn-mini" (click)="updateCategory(cat.id,cat.path)"><i class="icofont icofont-upload-alt"></i>Update</button>
+                  <button class="btn btn-info btn-mini" (click)="updateCategory(cat.id,cat.path)">
+                    <i class="icofont icofont-upload-alt"></i>Update</button>
                 </div>
               </div>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <input type="text" class="form-control form-control-sm col-sm-4" [(ngModel)]="newCat.name" placeholder="name">
+            </td>
+            <td>
+              <div class="form-inline">
+                <div class="mx-sm-1 mb-1">
+                  <input type="text" class="form-control form-control-sm col-sm-3" [(ngModel)]="newCat.path" placeholder="path">
+                  <button class="btn btn-success btn-mini" (click)="addCategory()">
+                    <i class="icofont icofont-ui-add"></i>Add</button>
+                </div>
+              </div>
+
             </td>
           </tr>
         </table>

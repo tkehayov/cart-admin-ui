@@ -25,8 +25,9 @@ export class CategoriesComponent implements OnInit {
   state: ITreeState;
   category = [];
   tree = [];
+  newCat = {};
 
-  constructor(private router: Router, private http: HttpClient,private servicePNotify: NotificationsService) {
+  constructor(private router: Router, private http: HttpClient, private servicePNotify: NotificationsService) {
   }
 
   ngOnInit() {
@@ -47,6 +48,18 @@ export class CategoriesComponent implements OnInit {
       this.category.push(cat);
       this.maxDepth(root[index].children);
     }
+  }
+
+  addCategory() {
+    this.http.post(BASICENDPOINT + '/categories', this.newCat).subscribe(data => {
+      var adddedCat = JSON.parse(JSON.stringify(data));
+      this.category.push(adddedCat);
+    }, Error => {
+      this.servicePNotify.error(
+        "Error",
+        "Category with this path already exists"
+      );
+    });
   }
 
   updateCategory(id, path) {
