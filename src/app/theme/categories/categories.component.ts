@@ -5,6 +5,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { BASICENDPOINT } from '../../constants';
 import { NotificationsService } from 'angular2-notifications';
 import { ITreeState } from 'angular-tree-component';
+import swal from 'sweetalert2';
 
 @Component({
   selector: 'app-categories',
@@ -37,7 +38,7 @@ export class CategoriesComponent implements OnInit {
   listCategories() {
     this.http.get(BASICENDPOINT + '/categories').subscribe(data => {
       this.tree = JSON.parse(JSON.stringify(data));
-      var a = this.maxDepth(JSON.parse(JSON.stringify(data)));
+      this.maxDepth(JSON.parse(JSON.stringify(data)));
     });
   }
 
@@ -52,8 +53,13 @@ export class CategoriesComponent implements OnInit {
 
   addCategory() {
     this.http.post(BASICENDPOINT + '/categories', this.newCat).subscribe(data => {
+      console.log(data);
       var adddedCat = JSON.parse(JSON.stringify(data));
-      this.category.push(adddedCat);
+      // this.listCategories();
+      this.servicePNotify.success(
+        "Success",
+        "Category added"
+      );
     }, Error => {
       this.servicePNotify.error(
         "Error",
@@ -74,6 +80,38 @@ export class CategoriesComponent implements OnInit {
     }, Error => {
       console.log(Error);
     });
+  }
 
+  deleteCategory(catId){
+    console.log(catId);
+    swal({
+      title: 'Are you sure?',
+      text: 'Category wont be able to revert',
+      type: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete',
+      cancelButtonText: 'No, cancel',
+      confirmButtonClass: 'btn btn-success m-r-10',
+      cancelButtonClass: 'btn btn-danger',
+      buttonsStyling: false
+    }).then((result) => {
+      if (result.value) {
+        this.http.delete(BASICENDPOINT + '/categories/?id=' + catId).subscribe(data => {
+          swal(
+            'Deleted!',
+            'Category deleted.',
+            'success'
+          )
+        });
+      } else {
+        swal(
+          'Cancelled',
+          'Category not deleted',
+          'error'
+        )
+      }
+    }).catch(swal.noop);
   }
 }
