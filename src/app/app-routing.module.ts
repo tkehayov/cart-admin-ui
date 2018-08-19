@@ -40,6 +40,10 @@ const routes: Routes = [
       {
         path: 'categories',
         loadChildren: './theme/categories/categories.module#CategoriesModule'
+      },
+      {
+        path: 'statistics',
+        loadChildren: './theme/statistics/statistics.module#StatisticsModule'
       }
     ]
   }

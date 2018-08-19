@@ -57,6 +57,12 @@ const MENUITEMS = [
         name: 'Orders',
         type: 'link',
         icon: 'ti-truck'
+      },
+      {
+        state: 'statistics',
+        name: 'Statistics',
+        type: 'link',
+        icon: 'ti-bar-chart'
       }
     ],
   }
