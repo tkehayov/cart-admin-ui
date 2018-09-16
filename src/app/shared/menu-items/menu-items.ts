@@ -32,7 +32,7 @@ export interface Menu {
 
 const MENUITEMS = [
   {
-    label: 'Navigation',
+    label: 'Inventory',
     main: [
       {
         state: 'products',
@@ -51,20 +51,31 @@ const MENUITEMS = [
         name: 'Categories',
         type: 'link',
         icon: 'ti-view-grid'
-      },
+      }
+     
+    ],
+  },
+  {
+    label: 'Sales',
+    main: [
       {
         state: 'orders',
         name: 'Orders',
         type: 'link',
         icon: 'ti-truck'
-      },
+      }
+    ]
+  },
+  {
+    label: 'Reports',
+    main: [
       {
         state: 'statistics',
         name: 'Statistics',
         type: 'link',
         icon: 'ti-bar-chart'
       }
-    ],
+    ]
   }
 ];
 
